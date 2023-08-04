@@ -1,0 +1,493 @@
+
+Abstract— A trusted and active community aided and 
+supported by the Internet of Things (IoT) is a key factor in food 
+waste reduction and management. This paper proposes an IoT 
+based context aware framework which can capture real-time 
+dynamic requirements of both vendors and consumers and 
+perform real-time match-making based on captured data. We 
+describe our proposed reference framework and the notion of 
+smart food sharing containers as enabling technology in our 
+framework. A prototype system demonstrates the feasibility of 
+a proposed approach using a smart container with embedded 
+sensors. 
+Keywords—Internet of Things (IoT), Sensors, Food Waste 
+Management (FWM), Context, Context-awareness 
+I. INTRODUCTION 
+In 2016, it’s been revealed that 1 in 6 Australians had to deal 
+with food insecurity in the past 12 months [1]. 33% of those 
+who sought food relief were children. Overall, 8% of increase 
+in people who sought food relief is recorded in 2015. Another 
+report has revealed that 795 million of world’s population are 
+undernourished [2]. Food insecurity has both physical and 
+psychological impacts on a person’s life which could be short 
+term or long term. Tiredness, loss of weight, loss of focus, 
+exposure to illnesses are some of the physical impacts, and 
+stress, loss of confidence, sadness and loss of hope are some 
+of the psychological impacts on a person’s life [1]. In 
+contrast, few other studies have released staggering statistics 
+on food loss and waste both locally and globally [3-5].This 
+clearly indicates that if food loss and waste can be managed 
+efficiently, it will have a large impact in reducing the number 
+of people who are undernourished. 
+Our critical analysis on popular existing non-ICT 
+based systems, ICT based systems and different scenarios has 
+exposed their short comings, strengths and approaches 
+towards dealing in reducing food waste. 
+This paper proposes a novel approach towards 
+efficient food waste reduction via an IoT enabled dynamic 
+and real-time match-making system  which  addresses the 
+strengths   and   shortcomings   identified   in   the   above 
+1 
+Those who supply excess food 
+2 
+Those who consume excess food 
+978-1-5090-6785-5/18/ 
+Authorized licensed use limited to: Cornell University Library. Downloaded on September 02,2020 at 15:13:46 UTC from IEEE Xplore.  Restrictions apply. 
+vendors , to facilitate sharing with consumers . Although the 
+concepts are proposed for the Food Wastage Management 
+(FWM) domain, our approach can be adopted, customized or 
+extended to manage other resources as well. 
+The structure of this paper is as follows. Section 2 
+summarizes the strengths and weaknesses of existing ICT 
+based food wastage management systems. The third section 
+describes the overall conceptual architecture of the proposed 
+framework. In the fourth section, we take a deep look into the 
+concept of a Smart Container, a prototype and some results 
+are presented as well. In the final section, a conclusion and 
+future work are presented which foresights the evolution of 
+our proposed system. 
+II. RELATED WORK 
+A summary of how ICT has been utilized by some of the 
+popular existing systems is presented in Table 1. This 
+illustrates how different systems have utilized ICT to perform 
+match-making between food vendors and needy consumers, 
+the use of social media and other mechanisms in promoting 
+and building trust in the community, the geographical 
+coverage by each system as well as their approach in deciding 
+the consumers (who should receive the donations). 
+ 
+Table 1 Different ICT usage of analyzed ICT based systems and 
+tools 
+No Covered Trust Biased Social Match 
+Geogra- measur- consum- Media making of 
+phical ing er Usage vendors 
+Area mechani decision and 
+sm consumers 
+based on 
+3 AUS No No Raise Location 
+1 
+public public awareness 
+data data 
+available 
+4 GBR No No Raise  Shopping 
+2 
+public awareness, list 
+ 
+3 
+Foodbank Local 
+4 
+Foodbank App 
+/$31.00 © 2018 by IEEE 
+Authorized licensed use limited to: Cornell University Library. Downloaded on September 02,2020 at 15:13:46 UTC from IEEE Xplore.  Restrictions apply. 
+ 
+data updates via Location 
+available FB (future) (future) 
+5 AUS No No Raise No public 
+3 
+public public awareness data 
+data data 
+6 DEU, Referring Yes Raise Location 
+4 
+NLD, and awareness 
+ 
+CHE, contributAUT ion 
+(more statistics 
+possible) 
+7 GBR, Anonym- Yes Raise Location, 
+5 
+NLD ous awareness food, non(more rating food, 
+possible) wanted 
+8 USA Rating partially Raise Location 
+6 
+Friends awareness, 
+(North) 
+crowd 
+shipping 
+9 ITA Rating partially Raise Location 
+7 
+removed awareness 
+10 Global Rating, Yes Authentica-  Location, 
+8 
+subscript- tion and Food 
+ion, raise category, 
+reviews awareness price, 
+and friendship, 
+Friends ownership, 
+availability 
+, 
+subscriptions, 
+11 AUS Rating Yes Raise Location 
+9 
+awareness 
+12 USA No partially Raise Location, 
+10 
+(New public awareness TransportaEngland) data tion, 
+available quality, 
+instructions 
+13 GBR No partially Promotion Location, 
+11 
+public and raise food type 
+data awareness 
+available 
+14 USA No No Raise Location, 
+12 
+(Chicago public awareness product 
+& data types, time 
+Champai available and 
+gn) schedule 
+15 USA Rating, No Raise Location, 
+13 
+award awareness supply, 
+program, demand, 
+feedback capacity 
+16 DNK, Free Yes Raise Location 
+14 
+GBR, purchase awareness 
+USA, when a 
+AUS, store is 
+FRA, introducDEU, ed 
+NOR, 
+CHE 
+5 
+SecondBite 
+6 
+FoodSharing.de 
+7 
+Olio 
+8 
+Food Cowboy 
+9 
+Bring the Food 
+10 
+RipeNearMe 
+11 
+Neighbour Flavor 
+978-1-5090-6785-5/18/ 
+Authorized licensed use limited to: Cornell University Library. Downloaded on September 02,2020 at 15:13:46 UTC from IEEE Xplore.  Restrictions apply. 
+USA Volume No Raise  Amount, 
+17 
+15 
+based awareness food type, 
+discounts location, 
+, time, 
+Anonym- storage& 
+ous freezer 
+feedback capacity 
+Overall it can be stated that almost all the systems lack the 
+use of IoT in capturing real-time dynamic context data of the 
+donations, and most of them are not context-aware in decision 
+making which results in inefficiencies in food distribution 
+and notifications to consumers about excess food, bias or 
+inaccurate decisions about the distribution of donations. Also, 
+although there have been several attempts in building trust 
+and reputation within the community they lack a trust and 
+reputation building and measuring mechanism which could 
+actively collaborate with a fraud detection and prevention 
+mechanism. Fraud detection and prevention system is an 
+essential part of the system to prevent misuse of donations by 
+several parties as identified via several studies [6-9]. With the 
+knowledge gained via analyzing existing systems a new 
+framework (and architecture) is designed to address the 
+shortcomings of existing systems while building on the 
+strengths they already have. 
+III. A PROPOSED FRAMEWORK 
+The proposed framework consists of four main components 
+which are Virtual Marketplace, Data Management Engine, 
+Recommendation Engine and Trust, Reputation and Fraud 
+Detection and Prevention Engine. This is illustrated in Figure 
+1. 
+A Virtual Marketplace is designed as a platform 
+which facilitates the creation of profiles, registering of 
+requirements and donations, and receiving recommendations. 
+Vendors and consumers can interchange their roles due to the 
+context-awareness of the system and the system not only 
+considers human consumption of surplus food but also other 
+uses such as composting and bio-materials/processing. This 
+is open for all the stages of the Food Supply Chain (FSC). 
+Data Management Engine handles all the data 
+related operations in the system. This enables coexistence and 
+collaboration between systems by importing profiles and 
+transaction data from existing systems to build and enhance 
+profiles. Furthermore, it can automatically extract data from 
+the web and social media with the consent of users to improve 
+the context knowledge of each user, which prevents users 
+from filling lengthy forms at the registration process. In 
+addition, collection of sensor data is handled by this Engine. 
+Moreover, it handles all the data storing, retrieval and update 
+operations.  The  four  databases  store  profiles,  donations 
+ 
+12 
+Spolier Alert 
+13 
+Plan ZHeroes 
+14 
+Zero Percent 
+15 
+Food Rescue US 
+16 
+Too Good To Go 
+17 
+Go Copia 
+/$31.00 © 2018 by IEEE 
+Authorized licensed use limited to: Cornell University Library. Downloaded on September 02,2020 at 15:13:46 UTC from IEEE Xplore.  Restrictions apply. 
+related  data,  transaction  history  and  knowledge  gained 
+through analysis for future improvements. 
+Recommendation Engine handles all the matchmaking between vendors and consumers. An initial matchmaking is performed based on the profile and requirements 
+of resources by both parties which is continuously monitored 
+and improved based on real-time data extracted from sensors. 
+This is then sent to Analytics Engine to analyze based on the 
+transaction history and knowledge base. After the analysis, 
+optimized recommendations are sent back to the 
+Recommendation Engine where final matching will occur 
+based on this new knowledge and will be sent to the Virtual 
+Marketplace, which will notify interacting parties. This 
+Recommendation Engine considers  both vendor’s and 
+consumer’s requirements when executing the match-making 
+algorithm which aims to guarantee both parties’ requirements 
+are satisfied. Analytics Engine will store the new knowledge 
+gained for future references. Existing systems can use this 
+framework as vendors or consumers to find food relief or post 
+donations on behalf of their clients and the match-making 
+will occur between these systems’ users and results will be 
+Figure 1 Proposed Co 
+978-1-5090-6785-5/18/ 
+Authorized licensed use limited to: Cornell University Library. Downloaded on September 02,2020 at 15:13:46 UTC from IEEE Xplore.  Restrictions apply. 
+sent to those systems establishing collaboration between 
+them. 
+Trust, Reputation and Fraud Detection and Prevention Engine 
+detects fraud and builds trust and reputation based on 
+personal information, domain behavior and transaction 
+information. This will guarantee a trusted and active local 
+community who works efficiently towards reducing and 
+minimizing food waste. This will assist in reducing fraud 
+associated with charities, their staff and consumers which 
+were discussed earlier in this paper. 
+As the initial phase, a Smart Container is designed 
+to capture context data of the donations via several sensors. 
+This is further described in the next section of this paper. 
+IV. SMART FOOD CONTAINER 
+Smart Food Container is a container equipped with state of 
+the art sensors which can automatically capture and transmit 
+the context data of the food donations dropped into it. Food 
+donations dropped into the Smart Food Container will be 
+detected and the information shared on our Virtual 
+Marketplace framework so that consumers can be notified 
+ 
+onceptual Architecture 
+/$31.00 © 2018 by IEEE 
+Authorized licensed use limited to: Cornell University Library. Downloaded on September 02,2020 at 15:13:46 UTC from IEEE Xplore.  Restrictions apply. 
+and consumers can understand the context of the food 
+available for donation. The idea is to automate the sharing of 
+excess food via such containers- users only need to drop their 
+excess food into the container and the system does the rest. 
+Our conceptual Smart Food Container contains a 
+distance sensor and a light sensor to detect the opening of the 
+box, a weight sensor to detect that a new item is dropped 
+inside and to calculate the weight of the items inside, a RFID 
+reader to read RFID tags, a temperature sensor to capture the 
+temperature inside, humidity and air pressure sensors, a GPS 
+sensor to locate the Smart Container’s location, a camera to 
+capture and identify the food items inside and a WIFI enabled 
+Raspberry Pi (or Arduino), which captures data from the 
+sensors and transmit to the distribution center via internet. 
+Figure 2 illustrates the conceptual Smart Container. 
+ 
+Figure 2 Smart Container 
+ 
+This can be extended to contain several such smart containers 
+inside a larger container as illustrated in Figure 3. Each 
+container can have specific sensors for the type of food items 
+contained in them such as Fresh Produce, Deli, Sea Food and 
+Meat and grocery products. This enables capturing more 
+accurate and specific context data relevant to each type of 
+food item. For an instance, temperature and humidity sensors 
+are essential to detect the temperature of Deli, Fresh Produce 
+and Sea Food and Meat containers to keep the food items 
+edible for a longer period whereas it is of not that importance 
+to the Grocery Products container. 
+ 
+Figure 3 Extended Smart Container 
+ 
+An initial prototype was designed and implemented to prove 
+the concept of a Smart Container. Raspberry Pi Camera and 
+a DHT 11 sensor was used to capture the images of donations, 
+humidity and temperature inside the Smart Food Container. 
+Figure 4 depicts the sensors used for the prototype. 
+978-1-5090-6785-5/18/ 
+Authorized licensed use limited to: Cornell University Library. Downloaded on September 02,2020 at 15:13:46 UTC from IEEE Xplore.  Restrictions apply. 
+ 
+ 
+Figure 4 Camera and DHT11 sensor 
+Figure 5 depicts the top and side views of the prototyped 
+Smart Container. 
+ 
+Figure 5 Prototype 
+Figure 6 is an image of a donation captured by the Raspberry 
+Pi camera. Image processing to identify the items is not 
+considered in the initial prototype. 
+ 
+Figure 6 Donation captured 
+ 
+A client-server architecture is designed using socket 
+programing to communicate between the Raspberry Pi and 
+the Server. An initial test was performed in a local network 
+to prove the concept. Figure 7 illustrates the communication 
+between Raspberry Pi and the server. Sensor readings are 
+performed in 30 seconds intervals and the data is transferred 
+to the server with the time when the data was captured by 
+Raspberry Pi. 
+ 
+ 
+Figure 7 client-server communication 
+/$31.00 © 2018 by IEEE 
+Authorized licensed use limited to: Cornell University Library. Downloaded on September 02,2020 at 15:13:46 UTC from IEEE Xplore.  Restrictions apply. 
+Further tests were performed to check how the environmental 
+variables, humidity and temperature changes over a period of 
+half an hour when the container’s lid is open and when it is 
+closed. Readings are performed in 30 seconds intervals as 
+mentioned above and the tests were carried out in an indoor 
+environment. 
+The first test was performed with the lid of the 
+container opened and the readings were plotted as shown in 
+Figure 8. Humidity has changed at the beginning and has 
+remained steady in the middle and has changed again towards 
+the end. The sensor and the items in the container were 
+directly exposed to the changes in the environment. 
+ 
+Figure 8 Humidity variation when lid is open 
+ 
+Temperature variations are illustrated in Figure 9. 
+Temperature has remained steady except for a spike during 
+the whole time. 
+ 
+Figure 9 Temperature variation when lid is open 
+ 
+The next experiment was performed when the lid was closed. 
+Apart for the initial changes, humidity has remained steady 
+during the half an hour. With the lid closed it has provided a 
+controlled or stable level of humidity for the items within the 
+container. Figure 10 illustrates the results of humidity 
+variations over time. 
+978-1-5090-6785-5/18/ 
+Authorized licensed use limited to: Cornell University Library. Downloaded on September 02,2020 at 15:13:46 UTC from IEEE Xplore.  Restrictions apply. 
+ 
+ 
+Figure 10 Humidity variations when lid is closed 
+ 
+Figure 11 illustrates the temperature variations when the lid 
+is closed. As with the previous experiment when the lid was 
+open, temperature inside the container has remained steady. 
+These experiments have provided an initial insight into the 
+potential environments these Smart Containers and their food 
+items will be exposed to. Different environments provide 
+different challenges in preserving the quality of food items. 
+Different thresholds can be set to safe guard the food quality 
+by identifying the type of food and the environments they are 
+exposed to. These readings from the sensors provide realtime dynamic context-data about the environments the food 
+is exposed to. For an instance, thresholds can be set for both 
+temperature and humidity levels for a certain food item/ 
+donation and sensors will monitor the environment and issue 
+warnings if the temperature and humidity levels are not 
+within the required thresholds. This allows the users to take 
+actions when necessary and food items remain edible for their 
+maximum usage period and prevents wastage via constant 
+monitoring and reporting. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 11 Temperature variations when lid is closed 
+ 
+ 
+We have shown that a wide range of events and conditions 
+related to the food container can be tracked – automating the 
+process of updating consumers about food available for 
+donation. We imagine thousands of such food containers 
+made available for people who would like to donate food and 
+the smart food container will be the device to “link” into our 
+proposed framework. 
+V. CONCLUSION AND FUTURE WORK 
+This paper proposed an IoT based novel, real-time and 
+dynamic  framework  to  efficiently  distribute  excess  food 
+/$31.00 © 2018 by IEEE 
+Authorized licensed use limited to: Cornell University Library. Downloaded on September 02,2020 at 15:13:46 UTC from IEEE Xplore.  Restrictions apply. 
+which would otherwise end up in waste lands. This 
+framework addresses the weaknesses identified in the 
+existing systems as well as maintains the strengths they have. 
+The concept and an initial prototype of a Smart Food 
+Container was introduced. Although current focus is on the 
+excess food these can be used to identify the best environment 
+for non-excess food as well as for other resources for 
+donation. 
+Weight, GPS, Air pressure, Light and RFID readers 
+will be added to the Smart Container in the next phase of the 
+implementation. This will enable to gather more accurate 
+context-data about the Smart Food Container’s environment, 
+including actions taken with the food and the condition of the 
+food. Ultimately these allows real-time, dynamic, intelligent 
+and context-aware match-making between the vendors/food 
+items and consumers. In the future, drones (on land or flying) 
+can also pick up such excess food from the Smart Food 
+Containers and help deliver them to matched consumers. 
+ 
+REFERENCES 
+ 
+[1] Foodbank,  "Foodbank  Hunger   Report  2016,"  2016, 
+Available: http://www.foodbank.org.au/wpcontent/uploads/2016/05/Foodbank-Hunger-Report2016.pdf. 
+[2] I. FAO, WFP, "The State of Food Insecurity in the World 
+Meeting the 2015 international  hunger targets: taking 
+stock of uneven progress," Food and Agriculture 
+Organization    of   the   United   Nations,   Rome2015, 
+978-1-5090-6785-5/18/ 
+Authorized licensed use limited to: Cornell University Library. Downloaded on September 02,2020 at 15:13:46 UTC from IEEE Xplore.  Restrictions apply. 
+Available: http://www.fao.org/3/a-i4646e.pdf, Accessed 
+on: 24/04/2017. 
+[3] Fao, "Global Initiative on Food Loss and Waste 
+Reduction," Food and Agriculture Organization of the 
+United Nations (FAO)2015 2015, Available:  
+http://www.fao.org/3/a-i4068e.pdf, Accessed on: 
+2016/08/09/. 
+[4] J. Gustavsson,  C.  Cederberg, U.  Sonesson,  R. V. 
+Otterdijk, and A. Meybeck, "Global food losses and food 
+waste – Extent, causes and prevention," FAO, Rome2011 
+2011, Available: 
+http://www.fao.org/docrep/014/mb060e/mb060e00.pdf, 
+Accessed on: 2016/08/09/. 
+[5] S. Victoria, "Sustainability Victoria Annual Report 201415," Sustainability Victoria2015, Available:  
+www.sustainability.vic.gov.au//media/resources/documents/who-we-are/business-plan-  
+and-annual-report/sustainability-victoria-annual-report-   
+2014-15.pdf?la=en. 
+[6] S. Bird, "Unpalatable truth about food banks the Left finds 
+so hard to swallow: Political football and undeserving 
+claimants distract from the many who are in genuine 
+need," in Daily Mail, ed, 2014. 
+[7] S. M. Simon Murphy, "No ID, no checks... and vouchers 
+for sob stories: The truth behind those shock food bank 
+claims," in Daily Mail, ed, 2014. 
+[8] m. hore, "Geelong charity Hunger for Knowledge asked 
+welfare groups to pay for food," in Geelong Advertiser, 
+ed, 2014. 
+[9] C. Walsh, "Restaurateur banned from Foodbank 
+dealings," in Herald Sun, ed. Northern Territory, 
+Australia, 2016. 
+/$31.00 © 2018 by IEEE 
+Authorized licensed use limited to: Cornell University Library. Downloaded on September 02,2020 at 15:13:46 UTC from IEEE Xplore.  Restrictions apply. 

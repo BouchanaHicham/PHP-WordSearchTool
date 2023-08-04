@@ -1,0 +1,187 @@
+
+Abstract—Smart house, is a set of devices and smart applications designed to provide a comfortable and safe environment 
+for its residents. Home devices have the ability to communicate 
+with each other. Through a network of networks. This network 
+of devices is called internet of things (IoT) . Our contribution 
+is to propose an architecture based on an autonomic and 
+intelligent object using multi-Agent systems. We have created an 
+environment that simulates a smart home with a range of devices 
+and sensors.The agent manages the built-in device. Through 
+user orders and information captured by sensors. The home is 
+controlled remotely via the Internet. Through the smartphone. 
+Keywords—Internet of Things (IoT), Smart house, Multi-agent 
+system, Ambient intelligence. 
+I. INTRODUCTION 
+Smart house is to connect the various devices and systems 
+in the house together so that they can be controlled from 
+anywhere and bring about the desired interaction among them. 
+These devices are things connected via a network that has a 
+window on the Internet. This network of things called Internet 
+of things (IoT). The IoT can be applied to several areas [1]: 
+smart cities (cities totally or partially connected to the Internet 
+enabling them to optimize their capacities such as trafﬁc 
+management and water treatment) [2], Health, wearables (all 
+portable technologies such as connected watches and locators), 
+transport, and also the work places, production and houses. 
+The automation [3] is the set of techniques used in the 
+buildings that makes it possible to centralize the control of the 
+different systems in the house. The principle of automation 
+is to make sure that the house has becomes intelligent [4], 
+independent, and it reﬂects on itself. The purpose of the 
+automation is to improve daily comfort by automating or 
+remotely managing recurring tasks. To do this, communication 
+system must be integrating into household appliances, for 
+example: we can open the windows of our house from the 
+ofﬁce and it goes with the heating, security system, lighting, 
+home appliance and many other objects. 
+To do experiments we created an environment that simulates an intelligent house, containing the most important 
+things that might be in an ordinary house. Each device of this 
+environment is managed by a smart agent. The house becomes 
+a multi-agent system. Enjoy all the characteristics of multiagent systems of cooperation, organization and intelligence. 
+The paper is organized as follows. The section 1 will 
+introduce the area of our research work. In section 2, we brieﬂy 
+c 
+978-1-5386-3269-7/17/$31.00 2017 IEEE 
+discuss related works. Section 3 describes the proposed system 
+architecture and its features. The section 4, outlines the system 
+implementation of the IoT MAS for ambient intelligence. 
+Finally, some conclusions and perspectives are presented. 
+II. RELATED WORKS 
+In [5], the authors proposed architecture for smart house 
+integration IoT with web-service using JSON for data exchange between component of system and Zigbee technology 
+for networking. In [6], the authors proposed ubiquitous home 
+controlled and monitoring system using a smart phone. In 
+[7],the authors proposed a multi agent architecture providing 
+autonomic characteristics for the internet of things (IoT). In 
+[8], the authors developed a framework for smart home using 
+constrained application protocol which provides a method to 
+control sensors and actuators remotely. 
+The main and important limitation for the architectures 
+proposed in [5], [6], [8] is the rigid structure in levels for the 
+system design. Indeed, there is no modularity which makes 
+operations such as updating, deleting and adding so difﬁcult. 
+Moreover, there is no cooperation between the system components. The objects are however heterogeneous since there 
+are different apparatuses so the objects are not autonomous. 
+In [6], The system is centralized and the control is ﬂexible but 
+the system in general not so. In [8] we know that the agents 
+need a powerful processor and large memory (RAM), but most 
+of the things lacking in it. So multi-agent system cannot be 
+incorporated into the object. In the next section we introduce a 
+new design of smart house based IoT using multi-agent system. 
+III. PROPOSED ARCHITECTURE 
+1) User: The main actors who will be the ﬁnal users of the 
+system, and can the person who lives in the house, his family 
+or the technicians. 
+2) AmbientEnvironment: the ambient environment consists 
+of sensors, actuators and the components of the house. These 
+objects are able to communicate to provide data (measurements) or produce a sequence of commands 
+3) IoT Gateway: It is a device allowing to link the house 
+(things) with external networks (the Internet). 
+2017 International Conference on Mathematics and information 
+Figure 1. General Architecture of our System 
+IV. AGENT SYSTEM 
+The component agent [9] is embedded on an object such 
+as (TV, air conditioner and light), The component can be controlled autonomously and its state can be changed according 
+to the state of the environment and its objects. 
+Figure 2. Concrete architecture of the agent embarked in the object 
+The health care agent is embedded on a physical component, it can control the state of health of user autonomously 
+and alert the user if there are important changes or to remind 
+him the dates of taking of medicines, as it can demand the 
+help from the third part in the case of critical health to the 
+user. 
+Figure 3. Concrete Architecture of the Agent “Health care” 
+The security agent task is to do act the existence of a 
+criminal in the house. Only the agent’s tasks in risk monitoring 
+c 
+978-1-5386-3269-7/17/$31.00 2017 IEEE 
+information Technology, Adrar, Algeria – December 4 - 5, 2017 202 
+are not limited artiﬁcial. It can control accidents such as ﬁres 
+and gas leaks. 
+Figure 4. Concrete architecture of the Security agent 
+The IoT Gateway [10] is an agent aim to standardize the 
+information coming from the ambient environment for the 
+perception of agents. This calibration is necessary because of 
+the heterogeneity of the protocols of the various manufacturers. 
+Thus, the MAS (Muli-agent system) perceives and acts on the 
+ambient environment through the gateway without worrying 
+about the format of the perceived data. 
+Figure 5. Concrete Architecture of The Agent Embarks In Gateway 
+V. SIMULATION 
+Our Smart house consists of objects and sensors, such as 
+two rooms occupied by lamps, a living room occupied by 
+a television, air conditioners, temperature sensor, a kitchen 
+contains a cook, fridge, sensor of temperature.All these devices 
+are connected objects. They are controlled by a mobile phone. 
+It is managed through the integrated agent. 
+A. Mobile Application 
+The role of mobile application is remote control of the 
+environment and communication environment-user. 
+1) Control Application: the control application plays the 
+role of ”remote control”, it consists of sending orders to the 
+remote system via a transmission link (IP networks) using the 
+UDP / IP protocol. It makes it possible to face practically realtime situations. For example: 
+One of the children of the house forgot his keys. One 
+of the parents can from a smartphone open the gate, 
+unlock the front door and deactivate the alarm; 
+A delivery is expected during the day. The owner 
+can let the driver access to the garage so that the 
+2017 International Conference on Mathematics and information 
+Figure 6. Simulation Window of Your System With Actuator Objects 
+parcel(tarde) is deposited there, and communicate with 
+him. 
+The following ﬁgure shows the control application that simulates the ambient environment. 
+Figure 7. Mobile Control Application 
+B. Setting Application 
+As our system is an environment that simulates the smart 
+house, we also need to simulate sensors (presence, breakdown, 
+gas leak, maintaining a given temperature in the house) 
+Figure 8. Setting Application 
+c 
+978-1-5386-3269-7/17/$31.00 2017 IEEE 
+information Technology, Adrar, Algeria – December 4 - 5, 2017 203 
+VI. CONCLUSION 
+In this paper, we introduced a smart environment based 
+agent system using IoT, that simulates an intelligent house, 
+controlled by remote home, through a smartphone. We also 
+explained our conceptual architecture of our system and the 
+structure , functionalities of each device in this house. As 
+perspectives of this research, work we want to create an 
+environment that helps researchers in smart homes and Internet 
+of things, to do their research by creating an API. In other axe, 
+we try to use mobile agents to exchange information between 
+the ambient environment and smart phone. 
+REFERENCES 
+[1] L. Atzori, A. Iera, and G. Morabito, “The internet of things: A survey,” 
+Computer networks, vol. 54, no. 15, pp. 2787–2805, 2010. 
+[2] A. Zanella, N. Bui, A. Castellani, L. Vangelista, and M. Zorzi, “Internet 
+of things for smart cities,”IEEEInternetofThingsjournal, vol. 1, no. 1, 
+pp. 22–32, 2014. 
+[3] M. Ruta, F. Scioscia, E. Di Sciascio, and G. Loseto, “Semanticbased enhancement of iso/iec 14543-3 eib/knx standard for building 
+automation,” IEEE Transactions on Industrial Informatics, vol. 7, no. 4, 
+pp. 731–739, 2011. 
+[4] L. Jiang, D.-Y. Liu, and B. Yang, “Smart home research,” in Machine 
+Learning and Cybernetics, 2004. Proceedings of 2004 International 
+Conference on, vol. 2. IEEE, 2004, pp. 659–663. 
+[5] M. Soliman, T. Abiodun, T. Hamouda, J. Zhou, and C.-H. Lung, 
+“Smart home: Integrating internet of things with web services and cloud 
+computing,” in Cloud Computing Technology and Science (CloudCom), 
+2013 IEEE 5th International Conference on, vol. 2. IEEE, 2013, pp. 
+317–320. 
+[6] R. Piyare, “Internet of things: ubiquitous home control and monitoring 
+system using android based smart phone,” International Journal of 
+Internet of Things, vol. 2, no. 1, pp. 5–11, 2013. 
+[7] P. Leong and L. Lu, “Multiagent web for the internet of things,” 
+in Information Science and Applications (ICISA), 2014 International 
+Conference on. IEEE, 2014, pp. 1–4. 
+[8] M. Joshi and B. Kaur, “Web integrated smart home infrastructure using 
+internet of things,” International Journal of Engineering Research and 
+General Science, vol. 3, no. 6, 2015. 
+[9] T. Kato, R. Chiba, H. Takahashi, and T. Kinoshita, “Agent-oriented 
+cooperation of iot devices towards advanced logistics,” in Computer 
+Software and Applications Conference (COMPSAC), 2015 IEEE 39th 
+Annual, vol. 3. IEEE, 2015, pp. 223–227. 
+[10] S. Guoqiang, C. Yanming, Z. Chao, and Z. Yanxu, “Design and 
+implementation of a smart iot gateway,” in Green Computing and 
+Communications (GreenCom), 2013 IEEE and Internet of Things 
+(iThings/CPSCom), IEEE International Conference on and IEEE Cyber, 
+Physical and Social Computing. IEEE, 2013, pp. 720–723. 

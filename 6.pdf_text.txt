@@ -1,0 +1,340 @@
+Abstract —Smart environment is a combination of software 
+and hardware (electronic and mechanical) to form a comfortable 
+and an evolving place. The smart home is an environment used 
+daily by the same people. In fact, these aspects allow the system 
+to create a profile for each living person in the environment. This 
+profile is a data set that affects the behavior of the system 
+according to the user where these data is collected through 
+sensors or through PDAs. The environment uses this profile to 
+create a comfortable environment for everyone. The system also 
+creates some common profiles from personal profiles to be used 
+in case there is more than one person in the same place. Smart 
+House is a network of things cooperates with each other to 
+provide a comfortable environment for humans. This network 
+called the internet of things (IoT). The components in the 
+internet of things can be physical and virtual devices, sensors or 
+actuators. These components are autonomic and have their own 
+intelligence characteristics. Our contribution is to propose an 
+architecture based on an autonomous and intelligent object using 
+multi-agent systems. In this paper, we will address the problem 
+of technical assistance of agent-based objects (detection of 
+failures) associated with safety and medical assistance in an 
+ambient environment which operates 
+Keywords —IoT; Multi-agent system; Ambient intelligence; 
+Context sensitivity; Smart house. 
+I. INTRODUCTION 
+The Internet of things allows several activities to function 
+harmoniously and   creates an « ambient intelligence », 
+resulting in significant economic. The IoT represents the 
+perceptible aspect of intelligent activities. And connects the 
+XXX-X-XXXX-XXXX-X/XX/$XX.00 ©20XX IEEE 
+University of Lyon 1, 
+Lyon, France 
+nadia.kabachi@univ-lyon1.fr 
+inter-machine communications constitute the technologies of 
+underlying the Internet of the objects. 
+The IoT can be applied to several areas [6]: smart cities 
+(cities totally or partially connected to the Internet enabling 
+them to optimize their capacities such as traffic management 
+and water treatment) [8], healthcare, wearable (all portable 
+technologies such as connected watches and locators), 
+transport, also the work places, production and houses. 
+The automation [9] is a set of technics used in the 
+buildings to facilitate the centralized control of different 
+systems in the house. Moreover, the principle of automation is 
+to make sure that the house has become intelligent [7], 
+independent, and   reflects on itself.  
+All these principles are allowed through the Internet of 
+things, which makes it possible to connect the devices of the 
+house to a network and to control them remotely. The purpose 
+of the automation is to improve the degree of comfort daily by 
+automating or managing remotely recurring tasks. To apply 
+this communication system we should integrate it into 
+household appliances, for example: we can open the windows 
+of our house from the office and the same goes with the 
+heating, security system, lighting, home appliance and many 
+other objects. 
+The user can monitor the electronic devices of home by 
+sitting anywhere. This system gives security to the user by 
+sending a notification. If the user is not at home and intruder 
+comes to the house then a sound sensor recognizes that there 
+is an intruder and notify the owners. These notifications are 
+mitigated through the MQTT protocol [14]. This system is 
+developed by using the Raspberry Pi [15]. In addition, the 
+system receives commands from mobile to analyze data from 
+light, temperature and sound sensors   based on threshold 
+values from the sensors to take the appropriate decisions and 
+sends the notification to the user. The system is connected to 
+the internet through WiFi. 
+The paper is organized as follow: in section 1 we will 
+introduce the area of our research work, in section 2 we will 
+briefly discuss related works. Section 3 describes the proposed 
+system architecture and its features, section 4 outlines the 
+system implementation of the IoT MAS for ambient 
+intelligence. Finally, some conclusions and perspectives are 
+presented 
+II. RELATED WORKS 
+In [11, 12], the authors proposed a smart house simulation 
+based on multi-agent system and internet of things using 
+UDP/IP protocol for data exchange between the user and the 
+house. Moreover, the authors have used Agent communication 
+language (ACL) for communication between agents (IoT 
+devices), the system is elastic and able to add or remove new 
+objects. 
+ In [1], the authors proposed an architecture for smart 
+house integration IoT with web service using JSON for data 
+exchange between system components and Zigbee technology 
+for networking. In [2], the authors proposed a ubiquitous 
+home controlled and monitoring system using a smart phone. 
+In [3] the authors proposed an architecture based on multi 
+agent system to provide autonomic characteristics for the 
+internet of things (IoT). In [4], the authors developed a 
+framework for smart home using a constrained application 
+protocol which provides a method to control sensors and 
+actuators remotely. 
+In [1, 2, 4] as for the architecture used, its main limitation 
+concerns the rigid structure in levels for the design of the 
+system: it is not modular (it is difficult to make any 
+modification to the system) and therefore constitutes a firm 
+system. Moreover, there is no cooperation between the system 
+components. The objects are however heterogeneous since 
+there are different apparatuses so the objects are not 
+autonomous. In [2], the system is centralized and the control is 
+flexible but the system in general not so. In [11,12] the system 
+is decentralized, each object has a significant degree of 
+independence and intelligence, the system is a simulation and 
+the results obtained cannot be relied upon significantly for the 
+simulation of negatives., In [4] we know that the agents need a 
+powerful processor and large memory (RAM), but most of the 
+things lacking in it. So the multi-agent system cannot be 
+incorporated into the object. In the next section, we will 
+introduce a new design of a smart house based IoT using 
+multi-agent system. 
+ 
+III. PREPARE YOUR PAPER BEFORE STYLING 
+This section describes the general architecture of the 
+proposed system. Our architecture is based on a multi-agent 
+system which imports an autonomy propriety to the proposed 
+system [13]. Through this section, we provide a detailed 
+description of the different modules that constitute it and the 
+mechanisms that are implemented there. We focused on the 
+internal architectures of the agents and the adaptation 
+mechanisms set up by the agents. 
+A. General Architecture 
+In this section, we are going to present the global 
+architecture of the proposed system (see figure. 1). 
+Fig. 1.  General Architecture of our System 
+User: The main actors who will be the final users 
+of the system, and he can be the persons who live 
+in the house. 
+Ambient Environment: the ambient 
+environment consists of sensors, actuators and the 
+components of the house. These objects are able 
+to communicate to provide data (measurements) 
+or produce a sequence of commands.  
+IoT Gateway:  is a device that allowed linking 
+the house (things) with external networks (the 
+Internet). The IoT Gateway plays the role of 
+mediator between the ambient environment 
+(networks of things) and the external environment 
+(public networks) internet. Moreover, this 
+component manages the circulation of 
+information in networks and also controls access 
+rights to objects and guarantees the criteria of 
+computer security against external risks. 
+B. Detailed Architecture 
+In the previous section, we have described the general 
+architecture and the components of our system. This 
+architecture will help us to refine the details of the architecture 
+of each type of agent. 
+1)  Device agent 
+The Device agent [10] is embedded in an object such as 
+(bulb, fan, refrigerator, geyser..etc), (see Figure 2) it can be 
+controlled the component autonomously, adapts and change 
+their state according to change of the state of the environment 
+and the other objects located in the environment. To overcome 
+the limitations of directly manipulated human machine 
+interfaces (rigidity, complexity, etc.), Device agent provides 
+an adaptation to the user's profile and an ability to anticipate 
+their needs (automate certain tasks, recall some useful 
+information, etc.). This can be transposed to the collective 
+domain. 
+Fig. 2. The concrete architecture of the agent embarks in the object 
+Environment: Constituted the house and its contents 
+such as users, neighboring components (the other 
+component located in the same place). 
+Sensing module: This unit contains a set of sensors. 
+The sensor takes input from the environmental and 
+physical changes. Such as temperature/humidity, 
+light, sound sensors. After taking the input the 
+sensors send the data to the processing module. 
+The sensors are devices that are used to 
+transform the state of a physical quantity 
+(environment) observed in a usable quantity 
+(measurements), such as an electrical voltage, a 
+mercury height, an intensity or the deviation of a 
+needle. The confusion between sensor and transducer 
+is often (wrongly): The sensor is at least made up of 
+one transducer. 
+Processing module:  This unit processes the data 
+captured by the sensors and commands sent by the 
+user. Through all these instructions, the controller is 
+dedicated to do some operations such as opening the 
+door or igniting a lamp. 
+Control module: This unit receives the orders from 
+the processing unit where it is main role to control 
+the circuitry from opening and closing. 
+IV. IMPLEMENTATION 
+We implement our architecture using Raspberry PI Model 
+B and the Raspbian operating system. Moreover, with a WIFI 
+module for the communication of the device with the other 
+devices and with the internet. 
+In our work, we have developed a smart home system 
+where we can control the light and door using a smartphone. 
+In order to implement a security system in absence of the user 
+through a notification in case that he has an intruder at home. 
+The security system checks whether there is any intruder at 
+home, it checks the mike value by a sound sensor. If the mike 
+value is higher than the normal then it generates an alert 
+message to the user and it turns on the buzzer. 
+A. 4.1. The Raspberry Pi  
+The Raspberry Pi is a small computer running in Linux 
+operating system on SD card for embedded computing 
+applications. It is equipped with a Broadcom BCM2836 
+processor, four 900 MHz ARMv7 cores, along with 1GB of 
+RAM. The expansion connector supports parallel I/O as well 
+as most communication buses. Furthermore, Raspberry Pi is a 
+particularly economical and powerful support that can be 
+easily implemented in small systems requiring access to the 
+physical world by sensors / actuators having digital interfaces 
+[5]. 
+ 
+Fig. 3. Raspberry PI 2 
+The Raspberry Pi is a small version of a computer running 
+in Linux. It has USB ports for connecting a keyboard and 
+mouse, as well as audio output and HDMI video output for 
+connecting a display. Through Raspberry Pi we can connect it 
+to a network via its Ethernet port or through USB and/or WiFi 
+adapters. The card is powered by a micro USB port. There 
+is no hard drive, a microSD card is used as a storage medium. 
+It contains the operating system, as well as all your documents 
+and programs. Characteristics of the Raspberry Pi 2 card: 
+ARM v7 900 MHz quad-core processor. 
+1 GB of DDR2 memory. 
+Ethernet / RJ45 port, 10.100 BaseT. 
+Four USB 2.0 ports. 
+HDMI video output. 
+Taken for the camera. 
+40 pin GPIO connector (all running at 3.3 
+V). 
+Memory card port: 1 micro SD port. 
+1 Micro USB for power supply. 
+Analog audio connectors: 1 3.5mm jack 
+output. 
+B. The electronic system circuit 
+We have constructed a miniature model for a smart home. 
+This model contains a set of devices (5 lamps, doors, Sound 
+sensor, and buzzer). All these elements are connected to the 
+Raspberry card. 
+Fig. 4. Electronic Circuit Installed in the Environment 
+V. CASE STUDY 
+The ambient environment is the smart house which 
+contains a set of objects connected to the internet (internet of 
+things), each object has an embedded agent. In our system, we 
+make a prototype of a house and we installed a set of objects 
+and sensors, this environment represented by the multi-agent 
+system. 
+A. Presentation of The Environment 
+Figure 5 shows the prototype of the ambient environment 
+containing control sensors with the Raspberry PI board driven 
+by the agents. 
+Fig. 5. External Photo of the Prototype for an Ambient Environment. 
+Fig. 6. Internal Photo of the Prototype for an Ambient Environment 
+Fig. 7. The Sensors Install in the Environment 
+B. System functioning 
+1) light Control :The light is opened or closed by an order 
+received from the user or from an order issued by the system 
+through certain data received from the sensors. 
+Fig. 8. Light Control 
+2) Door Control : The door opened or closed by an 
+order received from the user or from an order issued by 
+the system through certain data received by the sensors. 
+The door is closed The door is open 
+Fig. 9. Door control. 
+3) Security system : The security system is activated 
+and disabled by the application installed in the 
+smartphone. When the system detects the presence of a 
+malicious in the house and the security system is activated, 
+the system warns the user with the issuance of sounds of 
+alert and the system is apply some procedures, such as 
+closing doors and windows, cut off the electricity from 
+home to avoid the spying of the intruder. 
+The security system is disabled The security system is activated 
+Entering an intruder Protection procedures 
+Fig. 10. Security system 
+VI. CONCLUSIONS AND PERSPECTIVES   
+In this paper, we have presented in the first section a 
+smart environment-based on agent system using IoT, in 
+the second section, we have introduced our design of the 
+architecture of the proposed system. Finally, we have 
+highlighted the parts of our system and the main 
+interfaces with an explanation of their functionalities. The 
+The light is open The light is closed 
+originality of the proposed architecture gives many 
+advantages compared to the related works, our 
+architecture is flexible and able to add or remove 
+components without having a problem in the system, there 
+is cooperation between the system components and the 
+components are autonomous and intelligent. 
+As perspectives of this research work, we will integrate 
+this platform in the cloud computing environment. In 
+addition, we will try to use mobile agents to exchange 
+information between the ambient environment and the 
+cloud. 
+VII. REFERENCES 
+[1] Soliman, Moataz, et al. "Smart home: Integrating internet of things with 
+web services and cloud computing." Cloud Computing Technology and 
+Science (CloudCom), 2013 IEEE 5th International Conference on. Vol. 
+2. IEEE, 2013. 
+[2] Piyare, Rajeev. "Internet of things: ubiquitous home control and 
+monitoring system using android based smart phone." International 
+Journal of Internet of Things 2.1 (2013): 5-11. 
+[3] Leong, Peter, and Liming Lu. "Multiagent web for the internet of 
+things." Information Science and Applications (ICISA), 2014 
+International Conference on. IEEE, 2014. 
+[4] Joshi, Manveer, and Bikrampal Kaur. "Web Integrated Smart Home 
+Infrastructure Using Internet of Things." International Journal of 
+Engineering Research and General Science 3.6 (2015). 
+[5] Monk, Simon. "Programming Arduino." Tab Electronics, (2012). 
+[6] Hortensius, Peter Dirk, and Haaken B. Winbom. "Transceiver for 
+extending a CSMA/CD network for wireless communication." U.S. 
+Patent No. 5,917,629. 29 Jun. 1999. 
+[7] Jiang, Li, Da-You Liu, and Bo Yang. "Smart home research." Machine 
+Learning and Cybernetics, 2004. Proceedings of 2004 International 
+Conference on. Vol. 2. IEEE, 2004. 
+[8] Zanella, Andrea, et al. "Internet of things for smart cities." IEEE Internet 
+of Things journal 1.1 (2014): 22-32. 
+[9] Ruta, Michele, et al. "Semantic-based enhancement of ISO/IEC 14543-3 
+EIB/KNX standard for building automation." IEEE Transactions on 
+Industrial Informatics 7.4 (2011): 731-739. 
+[10]  Kato, Takumi, et al. "Agent-Oriented Cooperation of IoT Devices 
+Towards Advanced Logistics." Computer Software and Applications 
+Conference (COMPSAC), 2015 IEEE 39th Annual. Vol.3.IEEE,2015 
+[11] Meftah. Zouai, Okba. Kazar, Belgacem. Haba and Hamza. Saouli, 
+"Smart house simulation based multi-agent system and internet of 
+things," 2017 International Conference on Mathematics and Information 
+Technology (ICMIT), Adrar, 2017, pp. 201-203. doi: 
+10.1109/MATHIT.2017.8259717 
+[12] Zouai. Meftah,Kazar. Okba , Haba. Belgacem, Saouli. Hamza and  
+Benfenati. Hind. (2017). IoT Approach Using Multi-Agent System for 
+Ambient Intelligence. International Journal of Software Engineering and 
+its Applications. 11. 15-32. 10.14257/ijseia.2017.11.9.02. 
+[13] Merizig, A., Kazar, O., & Lopez-Sanchez, M. (2018). A Dynamic and 
+Adaptable Service Composition Architecture in the Cloud Based on a 
+Multi-Agent System. International Journal of Information Technology 
+and Web Engineering (IJITWE), 13(1), 50-68. 
+[14] Tang, Konglong, et al. "Design and implementation of push notification 
+system based on the MQTT protocol." International Conference on 
+Information Science and Computer Applications (ISCA 2013). 2013. 
+[15] Richardson, Matt, and Shawn Wallace. Getting started with raspberry PI. 
+" O'Reilly Media, Inc.", 2012.  

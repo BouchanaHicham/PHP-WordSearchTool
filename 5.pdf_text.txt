@@ -1,0 +1,1104 @@
+ 
+ABSTRACT 
+Developed as a simple and cost-effective wirey router 
+less technology for best effort services, IEEE 
+802.11 has gained popularity at an unprecedented rate. However, due to the lack of built-in 
+quality of service support, IEEE 802.11 experiences serious challenges in meeting the demands 
+of multimedia services and applications. This 
+article surveys 802.11 QoS schemes, including 
+service differentiation in the MAC layer, admission control and bandwidth reservation in MAC 
+and higher layers, and link adaptation in the 
+physical layer, designed to meet these challenges 
+by providing the necessary enhancements for the 
+required QoS. Furthermore, the article addresses 
+issues that arise when end-to-end QoS has to be 
+guaranteed in today’s pervasive heterogeneous 
+wired-cum-wireless networks. Among these chalIEEE 802.11 has gained 
+lenges, protocol interoperability, multihop 
+scheduling, full mobility support, and seamless 
+popularity at an 
+vertical handoff among multiple mobile/wireless 
+interfaces are specifically addressed. 
+unprecedented rate. 
+However, due to the 
+INTRODUCTION 
+Compared with a wired infrastructure, wireless 
+lack of built-in quality of 
+LAN (WLAN) has unique advantages, such as 
+broadband bandwidth capability and low deployservice support, 
+ment cost. Thanks to the technology provided by 
+IEEE 802.11, the WLAN market is experiencing 
+IEEE 802.11 experiexplosive growth in hot spots such as hotels, hospitals, and campuses, to mention just a few. 
+ences serious challenges 
+With WLANs being deployed in an unlimited 
+way as access points, wireless users can access 
+in meeting the demands 
+real-time and Internet services virtually anytime, 
+anywhere, while enjoying the flexibility of mobilof multimedia services 
+ity and guaranteed connectivity. 
+IEEE 802.11 is designed for best effort serand applications. 
+vices only. The lack of a built-in mechanism for 
+support of real-time services makes it very difficult to provide quality of service (QoS) guarantees for throughput-sensitive and delay-sensitive 
+multimedia applications. Therefore, modification 
+of existing 802.11 standards is necessary. 
+This work was supported Although IEEE 802.11e is being proposed as the 
+in part by the NSF grant upcoming standard for the enhancement of serIIS-0237954 on vice differentiation, QoS guarantee in 802.11 is 
+CAREER: Animation still a very challenging problem and needs furDatabases. ther study [1]. 
+6 1536-1284/04/$20.00 © 2004 IEEE 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply. 
+schemes such as service differentiation in the 
+Developed as a simple and cost-effective wire- medium access control (MAC) layer, admission 
+less technology for best effort services, IEEE control and bandwidth reservation in MAC as 
+802.11 has gained popularity at an unprecedent- well as higher layers, and link adaptation in the 
+ed rate. However, due to the lack of built-in physical layer. These schemes significantly enrich 
+quality of service support, IEEE 802.11 experi- the enhancement of QoS from different aspects. 
+ences serious challenges in meeting the demands Furthermore, many issues arise in smoothly proof multimedia services and applications. This viding end-to-end QoS guarantees while accessarticle surveys 802.11 QoS schemes, including ing wired networks from wireless and vice versa. 
+service differentiation in the MAC layer, admis- Among these challenges, protocol interoperabilision control and bandwidth reservation in MAC ty, multihop scheduling, full mobility support, 
+and higher layers, and link adaptation in the and seamless vertical handoff among multiple 
+physical layer, designed to meet these challenges mobile/wireless interfaces are discussed. 
+by providing the necessary enhancements for the This article is organized as follows. We prorequired QoS. Furthermore, the article addresses vide an overview of the IEEE 802.11 standard. 
+issues that arise when end-to-end QoS has to be We discuss the existing QoS schemes for 802.11 
+guaranteed in today’s pervasive heterogeneous networks. We introduce design challenges and 
+wired-cum-wireless networks. Among these chal- future work. Finally, we conclude this article. 
+lenges, protocol interoperability, multihop 
+scheduling, full mobility support, and seamless 
+A 
+N OVERVIEW OF IEEE 802.11 
+vertical handoff among multiple mobile/wireless 
+IEEE 802.11 is the leading standard for wireless 
+LAN [2]. It adopts the standard 802 logical link 
+control (LLC) protocol but provides optimized 
+physical layer (PHY) and medium access control 
+Compared with a wired infrastructure, wireless (MAC) sublayers for wireless communications. 
+LAN (WLAN) has unique advantages, such as 802.11 specifies two physical layers: direct 
+broadband bandwidth capability and low deploy- sequence spread spectrum (DSSS) and frequenment cost. Thanks to the technology provided by cy hopping spread spectrum (FHSS). Based on 
+IEEE 802.11, the WLAN market is experiencing the transmission technologies and operating 
+explosive growth in hot spots such as hotels, hos- spectrum, the later revisions of 802.11 can be 
+pitals, and campuses, to mention just a few. classified into three categories: 802.11a (orthogWith WLANs being deployed in an unlimited onal frequency-division multiplexing, OFDM, 5 
+way as access points, wireless users can access GHz), 802.11b (high-rateDSSS, HR/DSSS, 2.4 
+real-time and Internet services virtually anytime, GHz), and 802.11g (OFDM, 2.4 GHz). 802.11b 
+anywhere, while enjoying the flexibility of mobil- is based on HR/DSSS and operates at the 2.4 
+GHz industrial, scientific, and medical (ISM) 
+IEEE 802.11 is designed for best effort ser- band with transmission rate from 1 to 11 Mb/s. 
+vices only. The lack of a built-in mechanism for 802.11a is based on OFDM and uses 5 GHz 
+support of real-time services makes it very diffi- unlicensed national information infrastructure 
+cult to provide quality of service (QoS) guaran- (U-NII) band in America with a transmission 
+tees for throughput-sensitive and delay-sensitive rate of 6–54 Mb/s. 802.11g is also based on 
+multimedia applications. Therefore, modification OFDM but uses the 2.4 GHz ISM band and was 
+of existing 802.11 standards is necessary. formally ratified by the IEEE Standards AssociaAlthough IEEE 802.11e is being proposed as the tion’s Standard Board in June 2003. This stanupcoming standard for the enhancement of ser- dard specifies a maximum transmission rate of 
+vice differentiation, QoS guarantee in 802.11 is 54 Mb/s, the same as 802.11a. However, since 
+still a very challenging problem and needs fur- 802.11g uses the same spectrum between 2.4 and 
+2.4835 GHz and is inherently backward compatiIEEE Wireless Communications • August 2004 
+1536-1284/04/$20.00 © 2004 IEEE 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply.  
+Task Group Responsibility 
+802.11a — OFDM in 5 GHz Band Specification enabling up to 54 Mb/s to be achieved in the 5 GHz unlicensed radio band 
+by utilizing OFDM. 
+802.11b — HR/DSSS in 2.4 GHz Band Specification enabling up to 22 Mb/s to be achieved in the 2.4 GHz unlicensed radio 
+band by utilizing HR/DSSS. 
+802.11c — Bridge Operation Procedures Provides required information to ensure proper bridge operations, which is required 
+when developing access points. 
+802.11d — Global Harmonization Covers additional regulatory domains, which is especially important for operation in the 
+5 GHz bands because the use of these frequencies differ widely from one country to 
+another. As with 802.11c, the 802.11d standard mostly applies to companies developing  
+802.11 products. 
+802.11e — MAC Enhancements for QoS Covers issues of MAC enhancements for quality of service, such as EDCF service 
+differentiation and hybrid coordination function (HCF). 
+802.11f — Inter Access Point Protocol (IAPP) Provides interoperability for users roaming from one access point to another of dif 
+vendor. 
+802.11g —OFDM in 2.4 GHz band Specification enabling high data rates (36 or 54 Mb/s) to be achieved in the 2.4 GHz 
+unlicensed radio band. 
+802.11h — Dynamic Frequency Selection (DFS) Dynamic channel selection and transmission power control. 
+802.11i – Security Specification for WLAN security to replace the weak Wired Equivalent Privacy (WEP). 
+Table 1. The family of IEEE 802.11 standards (OFDM: orthogonal frequency-division multiplexing). 
+ble with 802.11b, it may attract more attention that suffers from location-dependent errors. 
+from industry than the earlier standardized Therefore, PCF has not drawn much attention 
+802.11a. Nevertheless, 802.11a possesses one from either the research community or industry, 
+noteworthy advantage: the unlicensed radio and most existing schemes focus on the enhancespectrum (5.15–5.35 and 5.725–5.825 GHz) it ment of DCF, which is a fully distributed protooperates within is rarely used, while the 2.4 GHz col. 
+spectrum for 802.11b and g has already been DCF is based on carrier sense multiple access 
+taken by many home electronic devices such as with collision avoidance (CSMA/CA) instead of 
+cordless phones, microwave ovens, and garage CSMA with collision detection (CSMA/CD) 
+door openers. The family of IEEE 802.11 stan- because stations cannot listen to the channel for 
+dards is shown in Table 1. collision while transmitting. In IEEE 802.11, carThe 802.11 MAC supports two basic medium rier sensing (CS) is performed at both PHY and 
+access protocols: contention-based distributed MAC layers: physical CS and MAC layer virtual 
+coordination function (DCF) and optional point CS. If the MAC frame length (including the paycoordination function (PCF). When PCF is load and 34 bytes of MAC header) exceeds the 
+enabled, the wireless channel is divided into RTS_threshold 
+superframes. Each superframe consists of a con- to-send (CTS) are used by stations to solve the 
+tention-free period (CFP) for PCF and a con- hidden terminal and capture effect problems. A 
+tention period (CP) for DCF. At the beginning MAC protocol data unit (MPDU) contains headof CFP, the point coordinator (usually the access er information, payload, and a 32-bit cyclic 
+point, AP) contends for access to the wireless redundancy check (CRC). The duration field 
+channel. Once it acquires the channel, it cyclical- indicates the amount of time after the end of the 
+ly polls high-priority stations and grants them present frame the channel will be used to comthe privilege of transmitting. Although the plete successful transmission of the data or manoptional PCF is designed for delay-bounded ser- agement frame. Stations use the information in 
+vices, it is centralized and can only be used in the duration field to adjust their network allocathe network of infrastructure mode. In addition, tion vector (NAV), which indicates the amount 
+the loose specification of PCF leaves many issues of time that must elapse until the current transunsolved [3]: mission session is complete and the channel can 
+• PCF experiences substantial delay at low load; be sensed again for idle status. 
+stations must always wait for polling, even in Before a station sends out a data frame, it 
+an otherwise idle system; senses the channel. If the channel is idle for at 
+• Since the AP needs to contend for the chan- least a DCF interframe space (DIFS), the frame 
+nel using DCF at the beginning of a CFP, the is transmitted. Otherwise, a backoff time slot is 
+effective period of contention-free polling may chosen randomly in the interval [0, 
+vary. contention window (CW) is incremented expo• It is very difficult for the point coordinator to nentially with an increasing number of attempts 
+manage the polling of a large number of inter- to retransmit the frame. Upon receipt of a coractive streams without harming the applica- rect packet, the receiving stations waits a short 
+tions using DCF contention. interframe space (SIFS) interval and transmits a 
+In addition, PCF is a centralized approach positive acknowledgment frame (ACK) back to 
+IEEE Wireless Communications • August 2004 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply. 
+null 
+Specification enabling up to 54 Mb/s to be achieved in the 5 GHz unlicensed radio band 
+Specification enabling up to 22 Mb/s to be achieved in the 2.4 GHz unlicensed radio 
+band by utilizing HR/DSSS. 
+Provides required information to ensure proper bridge operations, which is required 
+when developing access points. 
+Covers additional regulatory domains, which is especially important for operation in the 
+5 GHz bands because the use of these frequencies differ widely from one country to 
+another. As with 802.11c, the 802.11d standard mostly applies to companies developing  
+Covers issues of MAC enhancements for quality of service, such as EDCF service 
+differentiation and hybrid coordination function (HCF). 
+Provides interoperability for users roaming from one access point to another of different 
+Specification enabling high data rates (36 or 54 Mb/s) to be achieved in the 2.4 GHz 
+unlicensed radio band. 
+Dynamic channel selection and transmission power control. 
+Specification for WLAN security to replace the weak Wired Equivalent Privacy (WEP). 
+The family of IEEE 802.11 standards (OFDM: orthogonal frequency-division multiplexing). 
+that suffers from location-dependent errors. 
+Therefore, PCF has not drawn much attention 
+from either the research community or industry, 
+and most existing schemes focus on the enhancement of DCF, which is a fully distributed protoDCF is based on carrier sense multiple access 
+with collision avoidance (CSMA/CA) instead of 
+CSMA with collision detection (CSMA/CD) 
+because stations cannot listen to the channel for 
+collision while transmitting. In IEEE 802.11, carrier sensing (CS) is performed at both PHY and 
+MAC layers: physical CS and MAC layer virtual 
+CS. If the MAC frame length (including the payload and 34 bytes of MAC header) exceeds the 
+RTS_threshold, request-to-send (RTS) and clearto-send (CTS) are used by stations to solve the 
+hidden terminal and capture effect problems. A 
+MAC protocol data unit (MPDU) contains header information, payload, and a 32-bit cyclic 
+redundancy check (CRC). The duration field 
+indicates the amount of time after the end of the 
+present frame the channel will be used to complete successful transmission of the data or management frame. Stations use the information in 
+the duration field to adjust their network allocation vector (NAV), which indicates the amount 
+of time that must elapse until the current transmission session is complete and the channel can 
+be sensed again for idle status. 
+Before a station sends out a data frame, it 
+senses the channel. If the channel is idle for at 
+least a DCF interframe space (DIFS), the frame 
+is transmitted. Otherwise, a backoff time slot is 
+chosen randomly in the interval [0,CW). The 
+contention window (CW) is incremented exponentially with an increasing number of attempts 
+to retransmit the frame. Upon receipt of a correct packet, the receiving stations waits a short 
+interframe space (SIFS) interval and transmits a 
+positive acknowledgment frame (ACK) back to 
+7 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply.  
+DIFS SIFS SIFS 
+RTS DataFrag0 DataFrag1 
+Source 
+SIFS SIFS SIFS 
+CTS ACK0 ACK1 
+Destination 
+DIFS 
+NAV (RTS) 
+Other NAV (CTS) 
+NAV (DataFrag0) 
+NAV (ACK0) 
+Backoff 
+Defer access 
+Figure 1. The CSMA/CA-RTS/CT with fragmentation access scheme. 
+the source station, indicating transmission success. During the backoff period, the backoff 
+timer is decremented in terms of slot time as 
+long as the channel is determined to be idle. 
+When the backoff timer reaches zero, the data 
+frame is sent out. If collision occurs, a new backoff time slot is chosen and the backoff procedure 
+starts over until some time limit is exceeded. 
+After successful transmission, the CW is reset to 
+CW . For further increase of wireless channel 
+min 
+utilization, payload length is divided into fragments of smaller size (if it exceeds the 
+Frag_threshold) before a packet is transmitted 
+within one CW. The advantage of this technique 
+is that if an error occurs during its transmission 
+of a specific fragment, a station does not have to 
+wait to back off until the whole payload is transmitted. Also, it does not have to retransmit previous fragments that have been transmitted 
+successfully. The timing diagram of  CSMA/CARTS/CTS with fragmentation access is shown in 
+Fig. 1. The range of RTS_threshold 
+bytes (default), while the range of Frag_threshold 
+is 256–2312 bytes (default). However, vendors 
+may choose different ranges for both thresholds. 
+Once an error occurs, a packet has to be 
+retransmitted by the attempting station. Errors 
+may be caused by many possible situations. For 
+example, the corresponding CTS frame may not 
+be returned after an RTS frame is transmitted. 
+This may occur due to: 
+Parameter Meaning and units Tuning effect 
+If increased 
+Beacon interval Number of Tus between Better throughput and longer 
+transmission of beacon frames battery life 
+RTS threshold Frames longer than the threshold use I 
+RTS/CTS access method theoretical throughput if no 
+hidden terminal or interference 
+Fragmentation threshold Frames longer than the threshold I 
+are fragmented free channel 
+Long/short retry limits The maximum number of Lower frames drop rate, but it 
+retransmission allowed for frames may incur longer backoff and 
+shorter/longer than RTS threshold throttle the throughput 
+Table 2. Common tunable parameters in 802.11. 
+8 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply. 
+nullnull 
+• Collision with the transmission of another station 
+• Interference in the channel during the transmission of other RTS/CTS frames 
+• The station receiving the RTS frame having 
+an active virtual CS condition (indicating a 
+busy medium time period) 
+Two retry counters, the short retry count and 
+long retry count, are defined for use in packet 
+CW 
+retransmission. Packets shorter than RTS_threshold are associated with the short retry count; 
+others are associated with the long retry count. 
+The retry counters begin at 0 and are incrementBackoff 
+ed whenever a frame (or fragment) transmission 
+starts 
+fails. A frame is dropped if the retry count 
+exceeds the maximum retry limit. The short 
+The CSMA/CA-RTS/CT with fragmentation access scheme. 
+count is reset to 0 when: 
+• A CTS is received in response to a transmitted RTS. 
+the source station, indicating transmission suc- • An ACK is received after a non-fragmented 
+cess. During the backoff period, the backoff transmission. 
+timer is decremented in terms of slot time as • A broadcast or multicast frame is received. 
+long as the channel is determined to be idle. The long retry count is reset to 0 when: 
+When the backoff timer reaches zero, the data • An ACK is received for a frame longer than 
+frame is sent out. If collision occurs, a new back- RTS threshold. 
+off time slot is chosen and the backoff procedure • A broadcast or multicast frame is received. 
+starts over until some time limit is exceeded. In order to optimize the performance of 
+After successful transmission, the CW is reset to DCF, a number of parameters [4] are tunable in 
+. For further increase of wireless channel both the PHY and MAC layers of 802.11. A few 
+utilization, payload length is divided into frag- are selected and shown in Table 2. However, 
+ments of smaller size (if it exceeds the these parameters are basically station-based and 
+) before a packet is transmitted therefore cannot effectively differentiate multiwithin one CW. The advantage of this technique ple flows within a station. Furthermore, the 
+is that if an error occurs during its transmission effects of tuning these parameters are limited in 
+of a specific fragment, a station does not have to terms of increasing/decreasing MAC throughwait to back off until the whole payload is trans- put/delay, respectively. Therefore, additional 
+mitted. Also, it does not have to retransmit pre- resolutions are demanded to guarantee QoS in 
+vious fragments that have been transmitted 802.11. 
+successfully. The timing diagram of  CSMA/CARTS/CTS with fragmentation access is shown in 
+QOS MECHANISMS 
+RTS_threshold is 0–2347 
+Frag_threshold Most existing QoS mechanisms for 802.11 can be 
+is 256–2312 bytes (default). However, vendors classified into three categories: 
+may choose different ranges for both thresholds. • Service differentiation 
+Once an error occurs, a packet has to be • Admission control and bandwidth reservation 
+retransmitted by the attempting station. Errors • Link adaptation 
+may be caused by many possible situations. For While discussing different QoS schemes, we do 
+example, the corresponding CTS frame may not not consider those based on higher layers since 
+be returned after an RTS frame is transmitted. 802.11 specifies access technologies at the MAC 
+and PHY layers. 
+Tuning effect 
+If increased If decreased 
+Better throughput and longer Mobile stations can move faster 
+battery life and still maintain the network 
+connectivity 
+Increasing the maximum Higher throughput if there are a 
+theoretical throughput if no large number of hidden terminals 
+hidden terminal or interference 
+Increasing throughout in error- Increasing throughput in errorfree channel prone channel 
+Lower frames drop rate, but it Higher frames drop rate, but 
+may incur longer backoff and smaller buffer required 
+throttle the throughput 
+IEEE Wireless Communications • August 2004 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply.  
+802.11 DCF 
+Priority-based 
+Methodology 
+Contention window 
+Object 
+Backoff algorithm 
+CW /CW 
+min max 
+DWFQ (Distributed 
+P-DCF (Persistent 
+Mechanism EDCF (802.11e) 
+Weighted Fair Queue) 
+Factor DCF) 
+Figure 2. IEEE 802.11 service differentiation mechanisms. 
+based on the difference between the actual and 
+BETTER THAN BEST EFFORT SCHEMES: 
+expected throughputs. If the actual throughput is 
+SERVICE DIFFERENTIATION (MAC) 
+lower than the expected throughput,  
+Research has been done to provide certain decreased in order to increase the flow’s priority, 
+DCF-based QoS enhancements that mainly and vice versa. In the second algorithm, a ratio 
+address effective support of service differentia- (L ′ = R /W 
+i i 
+tion. In fact, these mechanisms do not provide throughput and  
+any QoS guarantee, only better than best effort the ith station. By comparing its own  
+services. Figure 2 shows a hierarchical taxono- those of others, a station can adjust its  
+my of QoS mechanisms that enable service dif- example, if its  
+ferentiation in 802.11. Basically, service it will decrease its  
+differentiation is achieved by two main meth- Distributed Fair Scheduling (DFS) [8, 10] 
+ods: priority and fair scheduling [5]. While the The main idea of DFS is to differentiate the 
+former binds channel access to different traffic backoff interval (BI) based on the packet length 
+classes by prioritized contention parameters, and traffic class, and the station with smaller BI 
+the latter partitions the channel bandwidth fair- transmits first. For the  
+ly by regulating wait times of traffic classes in ing × factor 
+proportion according to given weights. The tun- interval, L 
+i 
+able parameters (or object in Fig. 2) for both (the weights of high throughput classes are 
+approaches are CW size, backoff algorithm, and larger than that of low classes), and  
+interframe space. dom variable uniformly distributed in [0.9,1.1]. 
+The specific service differentiation mecha- ρ is introduced to minimize the collision caused 
+i 
+nisms are: by multiple stations with the same backoff 
+Enhanced DCF (EDCF) [6]: EDCF is a interval. 
+main part of the upcoming 802.11e standard Distributed Deficit Round Robin (DDRR) 
+for service differentiation. It prioritizes traffic [11]: In this algorithm, the  
+categories by different contention parameters, at the jth station is assigned with a service 
+including arbitrary interframe space (AIFS), quantum rate 
+maximum and minimum backoff window size requires, and a deficit counter (DC 
+(CW ), and a multiplication factor for accumulates at the rate of  
+max/min 
+expanding the backoff window. Although all by the packet length whenever a packet is 
+traffic categories keep using the same DCF transmitted. DC 
+access method, they have different probabili- frame space (IFS 
+ties of winning the channel contention by dif- before transmission or backoff starts, dependferentiating contention parameters. EDCF ing on whether backoff is used. A larger DC 
+allows any combinations of these contention results in a smaller IFS 
+parameters according to the service provider’s the collision between stations with the same 
+needs. deficit counter, randomization of IFS 
+Persistent Factor DCF (P-DCF) [7]: In this further adopted if a backoff scheme is elimialgorithm, each traffic class is associated with a nated. 
+persistent factor P (high-priority classes have Potentially, fair-scheduling-based schemes are 
+smaller P). In a backoff stage, a uniformly dis- advantageous to fairly allocate bandwidth among 
+tributed random number r is generated in every traffic classes and prevent starvation of a specific 
+slot time. Each flow stops the backoff and starts class. However, they often require substantial 
+transmission only if (r > P) in the current slot modification of existing 802.11 standards. Comtime, given no transmission occurs in previous pared to fair-scheduling-based schemes, priorityslot times. Therefore, the backoff interval is a based mechanisms require less modifications of 
+geometrically distributed random variable with the existing DCF access method and provide 
+parameter P. better QoS support for real-time applications. 
+Distributed Weighted Fair Queue (DWFQ) With the imperative demand to transmit video/ 
+[8, 9]: Two different algorithms using this strate- voice data over WLANs, IEEE 802.11e has 
+gy have been proposed. In the first, the backoff gained the interest of the majority of the comwindow size CW of any traffic flow is adjusted munity. 
+IEEE Wireless Communications • August 2004 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply. 
+null 
+Research has been 
+done to provide certain 
+DCF-based QoS 
+Fair-scheduling-based 
+enhancements, which 
+Interframe space AIFS 
+mainly address the 
+effective support of 
+DFS (Distributed DDRR (Distributed 
+Fair Scheduling) Deficit Round-Robin) 
+service differentiation. 
+In fact, these 
+mechanisms do not 
+based on the difference between the actual and 
+expected throughputs. If the actual throughput is 
+provide any QoS 
+lower than the expected throughput, CW will be 
+decreased in order to increase the flow’s priority, 
+guarantee, but only 
+and vice versa. In the second algorithm, a ratio 
+W ) is calculated, where R is the actual 
+i i 
+better than 
+throughput and W the corresponding weight of 
+i 
+th station. By comparing its own L with 
+i 
+best-effort services. 
+those of others, a station can adjust its CW; for 
+example, if its L is smaller than those of others, 
+i 
+it will decrease its CW. 
+Distributed Fair Scheduling (DFS) [8, 10]: 
+The main idea of DFS is to differentiate the 
+backoff interval (BI) based on the packet length 
+and traffic class, and the station with smaller BI 
+transmits first. For the ith flow, BI = ρ × scali i 
+factor × L /ϕ , where BI is the backoff 
+i i i 
+is the packet length, ϕ is the weight 
+i i 
+(the weights of high throughput classes are 
+larger than that of low classes), and ρ is a rani 
+dom variable uniformly distributed in [0.9,1.1]. 
+is introduced to minimize the collision caused 
+by multiple stations with the same backoff 
+Distributed Deficit Round Robin (DDRR) 
+: In this algorithm, the ith throughput class 
+th station is assigned with a service 
+quantum rate (Q ) equal to the throughput it 
+i,j 
+requires, and a deficit counter (DC ) that 
+i,j 
+accumulates at the rate of Q and is decreased 
+i,j 
+by the packet length whenever a packet is 
+transmitted. DC is used to calculate the interi,j 
+frame space (IFS ), which is the wait time 
+i,j 
+before transmission or backoff starts, depending on whether backoff is used. A larger DC 
+i,j 
+results in a smaller IFS . In order to minimize 
+i,j 
+the collision between stations with the same 
+deficit counter, randomization of IFS will be 
+i,j 
+further adopted if a backoff scheme is elimiPotentially, fair-scheduling-based schemes are 
+advantageous to fairly allocate bandwidth among 
+traffic classes and prevent starvation of a specific 
+class. However, they often require substantial 
+modification of existing 802.11 standards. Compared to fair-scheduling-based schemes, prioritybased mechanisms require less modifications of 
+the existing DCF access method and provide 
+better QoS support for real-time applications. 
+With the imperative demand to transmit video/ 
+voice data over WLANs, IEEE 802.11e has 
+gained the interest of the majority of the com9 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply.  
+The AACA protocol was 
+Admission control 
+designed to effectively 
+Measurement-based 
+solve the hidden 
+terminal and exposed 
+Data 
+Virtual Probe Permissible 
+probe 
+MAC packet throughout 
+packet 
+terminal problems in 
+-Barry -Valaee -Kazantzidis 
+-Shah 
+et al. and Li 
+et al. 
+multi-hop networks. 
+Figure 3. Admission control and bandwidth reservation mechanisms. 
+Nevertheless, it can also 
+be used to achieve 
+QOS MECHANISMS FOR ADMISSION CONTROL 
+bandwidth reservation. 
+BANDWIDTH RESERVATION (MAC) 
+Service differentiation is helpful in providing 
+better QoS for multimedia data traffic under low 
+to medium traffic load conditions. However, due 
+to the inefficiency of IEEE 802.11 MAC, service 
+differentiation does not perform well under high 
+traffic load conditions [3]. In this case, admission 
+control and bandwidth reservation become necessary in order to guarantee QoS of existing traffic. Otherwise, the extremely large saturation 
+delay may lead to failure to support multimedia 
+applications. However, unlike wired networks, in 
+IEEE 802.11 wireless networks, a wireless node 
+has no knowledge of the exact condition of the 
+network and thus cannot make an accurate decision on whether or not to admit a new flow. In 
+addition, with the contention-based CSMA/CA 
+channel access mechanism, bandwidth provisioning is almost impossible, leading to only soft 
+QoS guarantee. Because of these two major differences, admission control and bandwidth reservation in an IEEE 802.11 wireless network is 
+quite difficult. Figure 3 shows a hierarchical taxonomy of QoS mechanisms that enable admission control and bandwidth reservation in 802.11. 
+In general, admission control schemes require 
+less modification to the 802.11 standards than 
+bandwidth reservation schemes. Basically, admission control schemes can be broadly classified 
+into measurement-based and calculation-based 
+methods. In measurement-based schemes, admission control decisions are made based on the 
+measurements of existing network status, such as 
+throughput and delay. On the other hand, calculation-based schemes construct certain performance metrics or criteria for evaluating the 
+status of the network [12]. 
+Measurement-based approaches 
+MAC [13]: Barry et al. propose a virtual MAC 
+algorithm that passively monitors the channel by 
+virtual MAC frames and estimates local service 
+level (i.e., throughput and delay) by the measurement of virtual frames. In addition, a virtual 
+source (VS) algorithm allows application parameters to be tuned according to dynamic channel 
+conditions by utilizing virtual MAC. Valaee and 
+Li [14] proposed a measurement-based admission procedure using a sequence of probe packets for ad hoc networks. Instead of using probe 
+packets, Shah et al. [15] proposed a measurement-based admission control scheme using data 
+packets to measure the network load. 
+Calculation-based approaches: Kazantzidis  
+10 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply. 
+null 
+Admission control Bandwidth reservation 
+Calculation-based Scheduling and reservation-based 
+Flow 
+reservation and 
+Permissible 
+Saturation- ARME AACA 
+priority 
+throughout 
+based -Banchs and -Liu 
+allocation 
+-Kazantzidis 
+-Zhu et al. Perez et al. 
+-Li and  
+et al. 
+Prabhakaran 
+Admission control and bandwidth reservation mechanisms. 
+al. [16] present a heuristic solution using a simONTROL AND 
+ple parameter, permissible throughput, as the 
+(MAC) 
+admission decision criterion. Implementation 
+Service differentiation is helpful in providing issues in multihop ad hoc networks, such as 
+better QoS for multimedia data traffic under low propagation of permissible throughput using the 
+to medium traffic load conditions. However, due Ad Hoc On Demand Distance Vector (AODV) 
+to the inefficiency of IEEE 802.11 MAC, service routing protocol and discovering the bottleneck 
+differentiation does not perform well under high along the path, have been investigated. Based on 
+traffic load conditions [3]. In this case, admission the proposed saturation coefficient, Zhu et al. 
+control and bandwidth reservation become nec- [10] offer a calculation-based distributed admisessary in order to guarantee QoS of existing traf- sion control protocol. Here, stations can effecfic. Otherwise, the extremely large saturation tively determine whether they are approaching 
+delay may lead to failure to support multimedia saturation condition based on piggybacked inforapplications. However, unlike wired networks, in mation, including the number of active stations, 
+IEEE 802.11 wireless networks, a wireless node their corresponding traffic bit rates, and average 
+has no knowledge of the exact condition of the packet lengths. In this protocol the admission 
+network and thus cannot make an accurate deci- control decisions are made dynamically at both 
+sion on whether or not to admit a new flow. In source and destination stations in a fully disaddition, with the contention-based CSMA/CA tributed way. It can predict saturation and prechannel access mechanism, bandwidth provision- vent it from happening. 
+ing is almost impossible, leading to only soft Scheduling and reservation-based approachQoS guarantee. Because of these two major dif- es: Li and Prabhakaran [1] introduce a novel 
+ferences, admission control and bandwidth reser- framework for admission control with priority 
+vation in an IEEE 802.11 wireless network is reservation and allocation, which is mainly 
+quite difficult. Figure 3 shows a hierarchical tax- focused on optimizing the usage of priority 
+onomy of QoS mechanisms that enable admis- resources. Banchs and Pérez [8] present ARME 
+sion control and bandwidth reservation in 802.11. as an extension of DCF. ARME uses a tokenIn general, admission control schemes require bucket-based algorithm to detect whether the 
+less modification to the 802.11 standards than network is in overloading condition, and improve 
+bandwidth reservation schemes. Basically, admis- the performance of the system by adjusting the 
+sion control schemes can be broadly classified CW appropriately. Liu et al. [17] define a class 
+into measurement-based and calculation-based of reservation-based MAC access protocols with 
+methods. In measurement-based schemes, admis- multichannel supports, including AACA-SDT, 
+sion control decisions are made based on the ACA-MDT, and AACA-RDT. The AACA 
+measurements of existing network status, such as adopted the RTS/CTS access method on a comthroughput and delay. On the other hand, calcu- mon channel solely for reservation purposes. 
+lation-based schemes construct certain perfor- After successful reservation, the station pair 
+mance metrics or criteria for evaluating the transmits packets uninterruptedly in the reserved 
+channel. The AACA protocol was designed to 
+Measurement-based approaches: Virtual effectively solve the hidden terminal and exposed 
+propose a virtual MAC terminal problems in multihop networks. Neveralgorithm that passively monitors the channel by theless, it can also be used to achieve bandwidth 
+virtual MAC frames and estimates local service reservation. 
+level (i.e., throughput and delay) by the meaQOS MECHANISM FOR LINK ADAPTATION (PHY) 
+surement of virtual frames. In addition, a virtual 
+source (VS) algorithm allows application param- 802.11 specifies multiple transmission rates that 
+eters to be tuned according to dynamic channel are achieved by different modulation techniques 
+conditions by utilizing virtual MAC. Valaee and in the PLCP header of the PHY layer. However, 
+Li [14] proposed a measurement-based admis- it intentionally leaves the rate adaptation and 
+sion procedure using a sequence of probe pack- signaling mechanisms open. Since transmission 
+ets for ad hoc networks. Instead of using probe rates differ with the channel conditions, an 
+[15] proposed a measure- appropriate link adaptation mechanism is desirment-based admission control scheme using data able to maximize the throughput under dynamically changing channel conditions. Figure 4 
+: Kazantzidis et shows a hierarchical taxonomy of QoS mechaIEEE Wireless Communications • August 2004 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply.  
+Link adaptation 
+Methodology PLCP-based 
+Payload Frame retry 
+SNR/CIR/power level 
+Metric length count 
+Received 
+PERsignal strength 
+MPDU-based 
+Mechanism prediction 
+-Pavon and 
+-Qiao et al. 
+-Lampe et al. 
+Choi 
+Figure 4. Link adaptation mechanisms. 
+nisms that enable link adaptation. Most link bit error rate (BER) channel conditions. Howevadaptation mechanisms focus on algorithms to er, due to the additional signaling overhead of 
+switch among transmission rates specified in the proposed scheme, the throughput under low 
+PLCP, without the need to modify existing stan- BER channel conditions is lower than the standards. However, there is a novel idea to adjust dard 802.11b. 
+the length of DSSS pseudo-noise (PN) code in 
+802.11b, with slight modifications of 802.11b 
+C 
+HALLENGES 
+DCF. Metrics used in existing link adaptation 
+algorithms include channel signal-to-noise W 
+IRELESS 
+ratio/carrier-to-interference ratio (SNR/CIR), 
+received power level, average payload length, IEEE 802.11 WLANs have been successfully 
+transmission acknowledgments, or combinations. applied as the last mile technology in the increasReceived signal strength (RSS) [18]: Pavon ingly pervasive computing environments where 
+and Choi choose the RSS as the metric for the wireless/mobile users accesses Internet services 
+adaptation algorithm with the assumption that via the access point (AP). With more and more 
+transmission power is fixed. The authors also real-time multimedia applications subscribed to 
+assume a linear relationship between the average by mobile users, there is an urgent demand for 
+RSS and SNR. A rate adaptation algorithm at end-to-end QoS guarantee to be provided in 
+every station maintains its own 12 RSS thresh- wired-cum-wireless heterogeneous networks. 
+olds and corresponding transmission rates. Based The architecture of a heterogeneous wired-cumon the measured RSS, the station dynamically wireless network is depicted in Fig. 5 (revised 
+switches to an appropriate transmission rate. from the MIRAI architecture [23]). Currently, 
+PER-prediction [19]: Lampe et al. propose a there are some noteworthy approaches that 
+link adaptation scheme in which decisions are focus on the interoperability between IEEE 
+made based on packet error rate (PER) predic- 802.11 and differentiated services (DiffServ) or 
+tion. A main contribution of this article is the integrated services (IntServ). These approaches 
+prediction of PER with not only SNR/CIR but explore the possibility of protocol interoperabilialso the momentary channel transfer function. ty at the AP. Since MAC protocols are prevalent 
+MPDU-based link adaptation [20]: Observ- in IEEE 802.11 WLAN, cross-layer interaction is 
+ing the effects of multiple factors on the through- necessary for both network and MAC layers to 
+put, Qiao et al. proposed to use a combination share the flow QoS characteristics and network 
+of SNR, average payload length, and frame retry topology information without duplicative efforts. 
+count as the metric for the link adaptation algo- 802.11e and DiffServ 
+rithm. The proposed algorithm pre-established a pose a collaborative end-to-end QoS architectable of best transmission rate for decision mak- ture across wired WAN, wired LAN, and 
+ing. WLAN, based on DiffServ, IEEE 802.1D/Q, and 
+Link adaptation with success/fail (S/F) IEEE 802.11e, respectively. The 802.3 MAC 
+thresholds [21]: Chevillat et al. use the ACKs of frames carry the user priority values via the 
+transmitted frames as a measurement of channel 802.1Q virtual LAN (VLAN) tag. These user 
+condition. The basic idea of this algorithm is: if priorities are forwarded through 802.1D MAC 
+the number of consecutive successful transmis- bridge to 802.1e MAC and used by EDCF to difsions exceeds S, the transmission rate is ferentiate flows. To realize this, it is necessary to 
+increased. On the other hand, if the number of establish mapping between DiffServ code point 
+consecutive failed transmission exceeds F, the (DSCP) values, defined in the DiffServ (DS) 
+transmission rate is decreased. The ACKs of field, and traffic category identification (TCID), 
+frames are used to indicate whether a transmis- defined in 802.1e. Two kinds of mapping have 
+sion succeeded or failed. been defined in [24]: direct and hierarchical. In 
+Code Adapts To Enhance Reliability direct mapping, when the IP packets are encap(CATER) [22]: Mullins et al. describe an adap- sulated in MAC frames, they are placed in priortive PN code algorithm for direct sequence ity queues without preemption. In hierarchical 
+spread spectrum (DSSS) used in 802.11b. This mapping, IP packets are classified and shaped 
+algorithm improved the throughput under high according to the priority of the DSCP values 
+IEEE Wireless Communications • August 2004 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply. 
+null 
+With more and more 
+Link adaptation 
+real-time multimedia 
+applications subscribed 
+FEC 
+by mobile users, there is 
+Frame retry 
+Transmission ACKs 
+an urgent demand that 
+end-to-end QoS 
+S/F (success/ CATER 
+fail) thresholds -Mullin guarantee should be 
+-Cheville et al. et al. 
+provided in 
+wired-cum-wireless 
+bit error rate (BER) channel conditions. Howevheterogeneous 
+er, due to the additional signaling overhead of 
+the proposed scheme, the throughput under low 
+networks.  
+BER channel conditions is lower than the standard 802.11b. 
+HALLENGES AND FUTURE WORK 
+IRELESS INTERNET AND INTEROPERABILITY 
+IEEE 802.11 WLANs have been successfully 
+applied as the last mile technology in the increasingly pervasive computing environments where 
+wireless/mobile users accesses Internet services 
+via the access point (AP). With more and more 
+real-time multimedia applications subscribed to 
+by mobile users, there is an urgent demand for 
+end-to-end QoS guarantee to be provided in 
+wired-cum-wireless heterogeneous networks. 
+The architecture of a heterogeneous wired-cumwireless network is depicted in Fig. 5 (revised 
+from the MIRAI architecture [23]). Currently, 
+there are some noteworthy approaches that 
+focus on the interoperability between IEEE 
+802.11 and differentiated services (DiffServ) or 
+integrated services (IntServ). These approaches 
+explore the possibility of protocol interoperability at the AP. Since MAC protocols are prevalent 
+in IEEE 802.11 WLAN, cross-layer interaction is 
+necessary for both network and MAC layers to 
+share the flow QoS characteristics and network 
+topology information without duplicative efforts. 
+802.11e and DiffServ: Park and Kim [24] propose a collaborative end-to-end QoS architecture across wired WAN, wired LAN, and 
+WLAN, based on DiffServ, IEEE 802.1D/Q, and 
+IEEE 802.11e, respectively. The 802.3 MAC 
+frames carry the user priority values via the 
+802.1Q virtual LAN (VLAN) tag. These user 
+priorities are forwarded through 802.1D MAC 
+bridge to 802.1e MAC and used by EDCF to differentiate flows. To realize this, it is necessary to 
+establish mapping between DiffServ code point 
+(DSCP) values, defined in the DiffServ (DS) 
+field, and traffic category identification (TCID), 
+defined in 802.1e. Two kinds of mapping have 
+been defined in [24]: direct and hierarchical. In 
+direct mapping, when the IP packets are encapsulated in MAC frames, they are placed in priority queues without preemption. In hierarchical 
+mapping, IP packets are classified and shaped 
+according to the priority of the DSCP values 
+11 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply.  
+Internet 
+Infrastructure 
+Gateway router 
+Access point 
+Wireless LAN 
+Figure 5. Architecture of the wireless Internet. 
+before being forwarded to 802.1e priority 
+queues. Essentially, hierarchical mapping enables 
+more accurate end-to-end QoS traffic control 
+required by user applications. 
+802.11 and IntServ: Based on a proposed 
+MAC layer flow reservation and admission control protocol in IEEE 802.11 WLAN, called 
+WRESV, Li and Zhu [25] suggest integrating 
+RSVP and WRESV for the support of IntServ in 
+heterogeneous wired-cum-wireless networks. In 
+their approach, features of Resource Reservation Protocol (RSVP) and the characteristics of 
+the wireless medium are carefully considered 
+(e.g., multicast receivers in a WLAN can be handled by broadcasting at the AP). Message mappings at the AP are implemented by cross-layer 
+interaction, and user priorities are mapped to 
+802.11 MAC priorities with 802.1p. Since 
+WRESV can work with most of the existing 
+MAC schedulers such as DCF, EDCF, and DFS, 
+this integration scheme is more general and 
+leaves space for further enhancement. One 
+interesting feature is that this integration scheme 
+also considers support of both node mobility and 
+QoS in the situation of handoff. 
+SUPPORT OF FULL MOBILITY 
+802.11 supports mobile stations (MSs) within an 
+802.11 extended service set (ESS) to roam 
+among multiple APs. This roaming capability is 
+achieved through MSs’ beacon scanning in a 
+channel sweep. When an MS enters a new basic 
+service area, it first scans across all channels, 
+remaining on each channel for a specified period 
+of time to detect the signal radiated from the 
+AP, and then acquires the channels from the 
+AP. 
+Currently, 802.11 WLAN service is only available for low-mobility devices in isolated hot 
+spots with coverage from dozens of meters up to 
+a few hundred meters. However, recent efforts 
+have been made to extend 802.11 WLANs into 
+outdoor cellular networks to provide fully 
+mobile broadband service with ubiquitous coverage and high-speed connectivity. Leung  
+[26] investigate the throughput of 802.11 MAC 
+12 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply. 
+null 
+protocol with the service area (cell) size of 6 km 
+and claim that without modifying the standard, 
+the DCF access method with RTS/CTS is feasible for large outdoor cellular coverage. To 
+Infrastructure 
+extend the coverage of 802.11, smart antenna 
+design at the radio link is critical. By transmitting packets in a beam instead of in all directions, Vivato Inc. extends the coverage of 802.11 
+to kilometers, while other antennae (e.g., Cisco’s 
+Aironet, Motorola Inc.’s Canopy Radio, and 
+Proxim Inc.’s Tsunami QuickBridge) may reach 
+up to 10 km. [27]. However, a cell with large 
+outdoor coverage does not necessarily guarantee high-speed connectivity. Due to the unavoidable channel contention, throughput may 
+degrade when a cell is overcrowded. Therefore, 
+it is more desirable to have overlapped small 
+cells with fast handoff mechanisms. So far, a few 
+companies (e.g., MeshNetworks) have accomplished highway-speed connectivity through 
+802.11 compatible protocols. In their implementation, data packets from the Internet are transmitted through APs hanging on rooftops or 
+streetlights. 
+before being forwarded to 802.1e priority 
+queues. Essentially, hierarchical mapping enables 
+QOS AND MOBILITY MANAGEMENT IN 
+more accurate end-to-end QoS traffic control 
+H 
+YBRID WIRELESS NETWORKS 
+: Based on a proposed In addition to roaming and horizontal handoff 
+MAC layer flow reservation and admission con- among 802.11 WLANs, supporting QoS anytime, 
+trol protocol in IEEE 802.11 WLAN, called anywhere, and by any media requires seamless 
+WRESV, Li and Zhu [25] suggest integrating vertical handoffs between different wireless netRSVP and WRESV for the support of IntServ in works such as WLAN, mobile ad hoc network 
+heterogeneous wired-cum-wireless networks. In (MANET) [28], Bluetooth, Universal Mobile 
+their approach, features of Resource Reserva- Telecommunications System (UMTS), and widetion Protocol (RSVP) and the characteristics of band code-division multiple access (WCDMA). 
+the wireless medium are carefully considered Many new architectures/schemes have been pro(e.g., multicast receivers in a WLAN can be han- posed recently for seamless integration of 
+dled by broadcasting at the AP). Message map- WLAN and various wireless network interfaces, 
+pings at the AP are implemented by cross-layer discussed below. 
+interaction, and user priorities are mapped to Integration of WLAN and MANET: Lamont 
+802.11 MAC priorities with 802.1p. Since and Wang [29] investigated the issue of mainWRESV can work with most of the existing taining session connectivity while mobiles continMAC schedulers such as DCF, EDCF, and DFS, uously roam across multiple WLANs and 
+this integration scheme is more general and MANETs. In the proposed network architecture, 
+leaves space for further enhancement. One routing within MANETs is handled by the Optiinteresting feature is that this integration scheme mized Link State Routing (OLSR) protocol, and 
+also considers support of both node mobility and handoff between WLANs and MANETs is supported through automatic mode detection and 
+node switching capabilities of the mobiles. To 
+OBILITY 
+achieve efficient mobility management, function802.11 supports mobile stations (MSs) within an alities of OLSR are extended to support Mobile 
+802.11 extended service set (ESS) to roam IPv6. 
+among multiple APs. This roaming capability is Integration of WLAN and Bluetooth: Conti 
+achieved through MSs’ beacon scanning in a and Dardari [30] proposed an integrated analytichannel sweep. When an MS enters a new basic cal model for evaluation of the interference 
+service area, it first scans across all channels, between IEEE 802.11 and Bluetooth. The model 
+remaining on each channel for a specified period takes both PHY and MAC layers into account 
+of time to detect the signal radiated from the and can easily be implemented. The perforAP, and then acquires the channels from the mance is evaluated by packet error probability in 
+terms of the relative distances between the two 
+Currently, 802.11 WLAN service is only avail- systems for different conditions. 
+able for low-mobility devices in isolated hot Integration of WLAN and 3G wireless netspots with coverage from dozens of meters up to works: An architecture for integrating UMTS 
+a few hundred meters. However, recent efforts and IEEE 802.11 WLANs was proposed by 
+have been made to extend 802.11 WLANs into Jaseemuddin [31]. Since 802.11 is used primarily 
+outdoor cellular networks to provide fully for high-speed best effort service, a mobile node 
+mobile broadband service with ubiquitous cover- can maintain two connections in parallel (i.e., 
+age and high-speed connectivity. Leung et al. data connection through WLAN and voice con[26] investigate the throughput of 802.11 MAC nection through UMTS). Park and Yoon [32] 
+IEEE Wireless Communications • August 2004 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply.  
+investigate vertical handoff between IEEE 802.11 • Support of full mobility in 802.11, which may 
+WLANs and CDMA cellular networks. In their require the extension of coverage of 802.11 by 
+handoff strategy, traffic characteristics are con- modifying the design of the smart antenna at 
+sidered in order to guarantee low handoff laten- the radio link 
+cy. Specifically, real-time traffic takes into • QoS and mobility management in hybrid 
+account the handoff delay, and best effort traffic mobile/wireless networks where WLAN coextakes only throughput into account . Finally, ists with other networks such as MANET, 
+Buddhikot and Chandranmenon [33] suggest Bluetooth, and 3G networks 
+combining the features of wide-coverage low- These topics and issues combined extend the 
+rate 3G networks and high-rate small-coverage concepts of QoS guarantee in 802.11 and make 
+WLANs to improve the QoS and flexibility of it better suited for today’s high-speed highwireless data services. A loose integration mobility wireless networks. 
+approach is realized with an IOTA gateway and 
+a new client software in order to support seam[1] M. Li, B. Prabhakaran, and S. Sathyamurthy,  
+less mobility, QoS guarantees, and multiprovider 
+Reservation and Admission Control for Distributed 
+roaming agreements. 
+Scheduling Strategies in IEEE802.11 Wireless LAN, 
+With the decreasing size of cells in next-genProc. 6th ACM Int’l. Wksp. Modeling, Anal. and Sim. 
+eration multimedia-enabled wireless networks, 
+Wireless and Mobile Sys. 
+[2] IEEE 802.11, 1999 ed. (ISO/IEC 8802-11: 1999),  
+the number of handoffs during a call’s lifetime 
+Standards for Information Technology  
+increases. Thus, for integration of WLAN and 
+cations and Information Exchange between Systems 3/4-G wireless networks, an essential element of 
+Local and Metropolitan Area Network  
+seamless end-to-end QoS guarantee is ensuring 
+Requirements  
+Control (MAC) and Physical Layer (PHY) Specifications. 
+low call dropping probability in the 3/4-G net[3] A. Lindgren, A. Almquist, and O. Schel 
+works. Lou and Li [34] propose an adaptive 
+of Quality of Service Schemes for IEEE 802.11 Wireless 
+bandwidth allocation scheme, termed measureLANs,” Proc. 26th Annual IEEE Conf. Local Comp. Nets. 
+ment-based preassignment, to prevent handoff 
+Tampa, FL, Nov. 2001. 
+[4] M. Gast,  
+failure in wireless cellular networks. With periGuide, O’Reilly, 2002. 
+odic measurement of traffic status within a local 
+[5] W. Pattara-Atikom, P. Krishnamurthy, and S. Banerjee, 
+cell, the number of channels reserved for a hand“Distributed Mechanisms for Quality of Service in Wireoff can be adjusted, thus eliminating the signalless LANs, 
+pp. 26–34. 
+ing overhead of status information exchange 
+[6] IEEE Std 802.11e-D3.3,  
+between involved cells. 
+dard for Telecommunications and Information Exchange 
+between Systems  
+Part 11: Wireless LAN Medium Access Control (MAC) 
+S 
+UMMARY 
+and Physical Layer (PHY), 
+[7] Y. Ge and J. Hou,  
+Research in providing QoS guarantee in IEEE 
+ferentiation in IEEE 802.11, 
+802.11 WLANs and/or MANETs has been exten2003, pp. 1157 
+sively studied in recent years, and many QoS 
+[8] A. Banchs and X. P 
+tees in IEEE 802.11 Wireless LAN, 
+schemes have been proposed. We classify these 
+1, 2002, pp. 130 
+approaches into the following three categories: 
+[9] A. Banchs and X. P 
+• Link adaptation in the physical layer 
+Queuing in 802.11 Wireless LAN, 
+• Channel access coordination in the MAC layer 
+Apr. 2002, pp. 3121 
+[10] N. H. Vaidya, P. Bahl, and S. Gupta,  
+• Admission control strategies in MAC and 
+Scheduling in a Wireless LAN, 
+higher layers 
+2000, Aug. 2000, pp. 167 
+Essentially, these approaches focus on differ[11] W. Pattara-Atikom, S. Banerjee, and P. Krishnamurthy, 
+ent network layers and are tightly interrelated. 
+“Starvation Prevention and Quality of Service in Wireless LANs, 
+Without admission control and resource allocamedia Commun. 
+tion, providing QoS guarantees only by differen[12] H. Zhu et al. 
+tiating flows and coordinating the order of 
+802.11 Ad Hoc Networks, 
+channel access cannot be effective under high 
+[13] M. Barry, A. T. Campell, and A. Veres,  
+Control Algorithms for Service Differentiation in Wiretraffic loads. Also, all MAC and higher-layer 
+less Packet Networks, 
+protocols are significantly affected by link adap[14] S. Valaee and B. Li,  
+tation mechanisms in the physical layer. Theretrol in Wireless Ad Hoc Networks, 
+fore, the current trend is to design frameworks 
+2002, Vancouver, BC, Canada, Sept. 24 
+[15] S. H. Shah, K. Chen, and K. Nahrstedt,  
+that can share flow characteristics across multiBandwidth Management for Single-Hop Ad Hoc Wireple layers and cooperate to meet applications’ 
+less Networks, 
+QoS requirements. 
+Commun.. 2003. 
+Besides the aforementioned QoS mecha[16] M. Kazantzidis, M. Gerla, and S.-J. Lee,  
+Throughput Network Feedback for Adaptive Multimedia 
+nisms, this article also discussed challenges 
+in AODV MANETs, 
+encountered in designing wireless Internet, mul1352–56. 
+tihop ad hoc networks, and heterogeneous wire[17] K. Liu et al. 
+less networks. We expect interesting work in the 
+with Collision Avoidance for Wireless Multihop Ad Hoc 
+Networks,” 
+following areas: 
+[18] J. D. P Pavon and S. Choi,  
+• Interoperability between QoS mechanisms in 
+IEEE 802.11 WLAN via Received Signal Strength Measure802.11 WLAN and existing QoS architectures 
+ment,” IEEE ICC ’03 
+for IP-based Internet, such as IntServ and 
+[19] M. Lampe, H. Rohling, and J. Eichinger,  
+tion for Link Adaptation in OFDM Systems, 
+DiffServ 
+Wksp., Hamburg, Germany, 2002. 
+• QoS guarantee in a self-organized multihop 
+[20] D. Qiao, S. Choi, and K. G. Shin,  
+MANET, where link condition and resource 
+Link Adaptation for IEEE 802.11a Wireless LANs, 
+are highly dynamic 
+Trans. Mobile Comp. 
+IEEE Wireless Communications • August 2004 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply. 
+Support of full mobility in 802.11, which may 
+So far, a few 
+require the extension of coverage of 802.11 by 
+modifying the design of the smart antenna at 
+companies (e.g., 
+the radio link 
+oS and mobility management in hybrid 
+MeshNetworks) have 
+mobile/wireless networks where WLAN coexists with other networks such as MANET, 
+accomplished highwayBluetooth, and 3G networks 
+These topics and issues combined extend the 
+speed connectivity 
+concepts of QoS guarantee in 802.11 and make 
+it better suited for today’s high-speed highthrough 802.11mobility wireless networks. 
+compatible protocols. 
+REFERENCES 
+[1] M. Li, B. Prabhakaran, and S. Sathyamurthy, “On Flow 
+In their implementation, 
+Reservation and Admission Control for Distributed 
+Scheduling Strategies in IEEE802.11 Wireless LAN,” 
+Proc. 6th ACM Int’l. Wksp. Modeling, Anal. and Sim. data packets from the 
+Wireless and Mobile Sys., Sept. 2003. 
+[2] IEEE 802.11, 1999 ed. (ISO/IEC 8802-11: 1999), “IEEE 
+Internet are transmitted 
+Standards for Information Technology — Telecommunications and Information Exchange between Systems Local and Metropolitan Area Network — Specific through access points 
+Requirements — Part 11: Wireless LAN Medium Access 
+Control (MAC) and Physical Layer (PHY) Specifications.” 
+hanging on rooftops 
+[3] A. Lindgren, A. Almquist, and O. Schelén, “Evaluation 
+of Quality of Service Schemes for IEEE 802.11 Wireless 
+Proc. 26th Annual IEEE Conf. Local Comp. Nets., or streetlights. 
+Tampa, FL, Nov. 2001. 
+[4] M. Gast, 802.11 Wireless Networks: the Definitive 
+Reilly, 2002. 
+[5] W. Pattara-Atikom, P. Krishnamurthy, and S. Banerjee, 
+Distributed Mechanisms for Quality of Service in Wireless LANs,” IEEE Wireless Commun., vol. 10, June 2003, 
+34. 
+[6] IEEE Std 802.11e-D3.3, “Draft Supplement to IEEE Standard for Telecommunications and Information Exchange 
+between Systems — LANMAN Specific Requirements,. 
+Part 11: Wireless LAN Medium Access Control (MAC) 
+and Physical Layer (PHY),” Oct. 2002. 
+[7] Y. Ge and J. Hou, “An Analytical Model for Service Differentiation in IEEE 802.11,” IEEE ICC ’03, vol. 2, May 
+2003, pp. 1157–62. 
+[8] A. Banchs and X. Pérez, “Providing Throughput Guarantees in IEEE 802.11 Wireless LAN,” IEEE WCNC ’02, vol. 
+1, 2002, pp. 130–38. 
+[9] A. Banchs and X. Pérez, “Distributed Weighted Fair 
+Queuing in 802.11 Wireless LAN,” IEEE ICC ’02, vol. 5, 
+Apr. 2002, pp. 3121–27. 
+[10] N. H. Vaidya, P. Bahl, and S. Gupta, “Distributed Fair 
+Scheduling in a Wireless LAN,” Proc. ACM MOBICOM 
+, Aug. 2000, pp. 167–78. 
+[11] W. Pattara-Atikom, S. Banerjee, and P. Krishnamurthy, 
+Starvation Prevention and Quality of Service in Wireless LANs,” Proc. 5th Int’l. Symp. Wireless Pers. Multimedia Commun., HI, Oct. 2002. 
+et al., “Distributed Admission Control for IEEE 
+802.11 Ad Hoc Networks,” submitted, IEEE/ACM Trans. Net. 
+[13] M. Barry, A. T. Campell, and A. Veres, “Distributed 
+Control Algorithms for Service Differentiation in Wireless Packet Networks,” Proc. IEEE INFOCOM 2001. 
+[14] S. Valaee and B. Li, “Distributed Call Admission Control in Wireless Ad Hoc Networks,” Proc. IEEE VTC 
+, Vancouver, BC, Canada, Sept. 24–28, 2002. 
+[15] S. H. Shah, K. Chen, and K. Nahrstedt, “Dynamic 
+Bandwidth Management for Single-Hop Ad Hoc Wireless Networks,” Proc. IEEE Int’l. Conf. Perv. Comp. and 
+Commun.. 2003. 
+[16] M. Kazantzidis, M. Gerla, and S.-J. Lee, “Permissible 
+Throughput Network Feedback for Adaptive Multimedia 
+in AODV MANETs,” IEEE ICC ’01, vol. 5, June 2001, pp. 
+et al., “A Reservation-based Multiple Access Protocol 
+with Collision Avoidance for Wireless Multihop Ad Hoc 
+” IEEE ICC ’03, vol. 2, May 2003, pp. 1119–23. 
+[18] J. D. P Pavon and S. Choi, “Link Adaptation Strategy for 
+IEEE 802.11 WLAN via Received Signal Strength MeasureIEEE ICC ’03, vol. 2, May 2003, pp. 1108–13. 
+[19] M. Lampe, H. Rohling, and J. Eichinger, “PER-Prediction for Link Adaptation in OFDM Systems,” OFDM 
+, Hamburg, Germany, 2002. 
+[20] D. Qiao, S. Choi, and K. G. Shin, “Goodput Analysis and 
+Link Adaptation for IEEE 802.11a Wireless LANs,” IEEE 
+Trans. Mobile Comp., vol. 1, no. 4, 2002, pp. 278–92. 
+13 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply.  
+[21] P. Chevillat et al., “A Dynamic Link Adaptation AlgoAll MAC and higher-layer 
+rithm for IEEE 802.11a Wireless LANs,”  
+vol. 2, May 2003, pp. 1141–45. 
+protocols are [22] B. E. Mullins, N. J. Davis IV, and S. F. Midkiff,  
+Adaptive Wireless Local Area Network Protocol that 
+Improves Throughput via Adaptive Control of Direct 
+significantly affected 
+Sequence Spectrum Parameters,” ACM SIGMOBILE 
+Mobile Comp. and Commun. Rev., vol. 1, no. 3, Sept. 
+by link adaptation 1997, pp. 9–20. 
+[23] P. J. M. Havinga and G. Wu, “Wireless Internet on Heterogeneous Networks,” Proc. Wksp. Mobile Commun. 
+mechanisms in the 
+in Perspective, Enschede, the Netherlands, Feb. 2001. 
+[24] S.-Y. Park et al., “Collaborative QoS Architecture 
+physical layer. Therefore, between DiffServ and 802.11e Wireless LAN, 
+IEEE VTC ’03-Spring, Jeju, Korea, Apr. 2003. 
+[25] M. Li et al., “End-to-end QoS Guarantee in Heterogethe current trend is to 
+neous Wired-cum-Wireless Networks,” Tech. rep. no. 
+UTDCS-25-04, Univ. of TX at Dallas, July 2004. 
+design frameworks that [26] K. K. Leung et al., “Outdoor IEEE 802.11 Cellular Networks: MAC Protocol Design and Performance, 
+ICC ’02, vol. 1, Apr. 2002, pp. 595–99. 
+can share flow charac[27] S. M. Cherry, “Broadband a Go-Go,” IEEE Spectrum 
+June 2003, pp. 20–25. 
+teristics across multiple [28] I. Chlamtac, M. Conti, and J. Liu, “Mobile Ad Hoc Networking: Imperatives and Challenges,”  
+works J., vol. 1, no. 1, 2003. 
+layers and cooperate to 
+[29] L. Lamont et al., “Integrating WLANs & MANETs to the 
+IPv6 Based Internet,” IEEE ICC ’03, vol. 2, May 2003, 
+meet the applications’ pp. 1090–95. 
+[30] A. Conti et al., “Bluetooth and IEEE 802.11b Coexistence: Analytical Performance Evaluation in Fading 
+QoS requirements. 
+Channels,” IEEE JSAC, vol. 21, Feb. 2003, pp. 259 
+[31] M. Jaseemuddin, “An Architecture for Integrating 
+UMTS and 802.11 WLAN Networks,” IEEE ISCC ’03 
+June 2003, pp. 716–23. 
+[32] H. Park et al., “Vertical Handoff Procedure and Algorithm between IEEE 802.11 WLAN and CDMA Cellular 
+Network,” Mobile Commun.: 7th CDMA Int’l. Conf. 
+Seoul, Korea, 2002. 
+[33] M. Buddhikot et al., “Integration of 802.11 and ThirdGeneration Wireless Data Networks,” Proc. IEEE INFOCOM 2003. 
+[34] X. Lou et al., “An Adaptive Measured-based PreAssignment Scheme with Connection-level QoS Support 
+for Mobile Networks,” IEEE Trans. Wireless Commun. 
+vol. 1, no. 3, 2002, pp. 521–30. 
+BIOGRAPHIES 
+HUA ZHU (zhuhua@utdallas.edu) received a B.S. in electrical 
+engineering from Beijing Polytechnic University, China, in 
+1998. He received an M.S. in telecommunication engineering in University of Texas at Dallas in 2001. He is now 
+working toward a Ph.D. degree in electrical engineering at 
+the University of Texas at Dallas, where his research interests include QoS mechanisms for various wireless access 
+technologies and wireless multimedia communications. 
+14 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply. 
+A Dynamic Link Adaptation Algo- MING LI (mingli@utdallas.edu) received his B.S. and M.S. in 
+ IEEE ICC ’03, engineering from Shanghai Jiao Tong University, China, in 
+1995 and 1998, respectively. He is currently a Ph.D. candi[22] B. E. Mullins, N. J. Davis IV, and S. F. Midkiff, “An date in the Department of Computer Science, University of 
+Adaptive Wireless Local Area Network Protocol that Texas at Dallas, where he received an M.S. degree in comImproves Throughput via Adaptive Control of Direct puter science in December 2001. His research interests 
+ACM SIGMOBILE include QoS schemes for mobile ad hoc networks and mul, vol. 1, no. 3, Sept. timedia over wireless networks. 
+Wireless Internet on Het- IMRICH CHLAMTAC [M’86, SM’86, F’93] (chlamtac@utdallas. 
+Proc. Wksp. Mobile Commun. edu) received a Ph.D. degree in computer science from the 
+, Enschede, the Netherlands, Feb. 2001. University of Minnesota, Minneapolis. Since 1997 he has 
+Collaborative QoS Architecture been the Distinguished Chair in Telecommunications, Unibetween DiffServ and 802.11e Wireless LAN,” Proc. versity of Texas at Dallas. He also holds the titles of the 
+, Jeju, Korea, Apr. 2003. Sackler Professor at Tel Aviv University, Israel, the Bruno 
+End-to-end QoS Guarantee in Heteroge- Kessler Honorary Professor at the University of Trente, 
+ Tech. rep. no. Italy, where he is currently on sabbatical, and University 
+UTDCS-25-04, Univ. of TX at Dallas, July 2004. Professor at the Technical University of Budapest, HunOutdoor IEEE 802.11 Cellular Net- gary. He has published close to 300 papers in referreed 
+works: MAC Protocol Design and Performance,” IEEE journals and conferences, and is the co-author of Local 
+Area Networks (Lexington Books, 1981, 1982, 1984) and 
+IEEE Spectrum, Mobile and Wireless Networks Protocols and Services 
+(Wiley, 2000), and IEEE Network’s 2000 Editor’s Choice. 
+Mobile Ad Hoc Net- He serves as the founding Editor-in-Chief of 
+ Ad Hoc Net- ACM/URSI/Kluwer Wireless Networks, ACM/Kluwer Mobile 
+Networks and Applications, and SPIE/Kluwer Optical NetIntegrating WLANs & MANETs to the works. He is a Fellow of the ACM, a Fulbright Scholar, and 
+, vol. 2, May 2003, an IEEE Distinguished Lecturer. He is the winner of the 
+2001 ACM Sigmobile annual award and the IEEE ComSoc 
+Bluetooth and IEEE 802.11b Coexis- TCPC 2002 Award for contributions to wireless and mobile 
+tence: Analytical Performance Evaluation in Fading networks and of multiple best paper awards in wireless 
+, vol. 21, Feb. 2003, pp. 259–69. and optical networks. 
+An Architecture for Integrating 
+IEEE ISCC ’03, 
+B. PRABHAKARAN (praba@utdallas.edu) is on the faculty of 
+the Computer Science Department, University of Texas at 
+Vertical Handoff Procedure and AlgoDallas. He has been working in the area of multimedia sysrithm between IEEE 802.11 WLAN and CDMA Cellular 
+tems: animation and multimedia databases, authoring and 
+Mobile Commun.: 7th CDMA Int’l. Conf., 
+presentation, resource management, and scalable Webbased multimedia presentation servers. He received the 
+Integration of 802.11 and Thirdprestigious National Science Foundation CAREER Award in 
+Proc. IEEE INFO2003 for his proposal on animation databases. He has published several research papers in various refereed conferAn Adaptive Measured-based Preences and journals in this area. He has served as Associate 
+Assignment Scheme with Connection-level QoS Support 
+Chair of the ACM Multimedia Conferences in 2003, 2000, 
+IEEE Trans. Wireless Commun., 
+and 1999 He has served as guest editor (special issue on 
+Multimedia Authoring and Presentation) for ACM Multimedia Systems. He is also serving on the editorial board of 
+Multimedia Tools and Applications, Kluwer. He has also 
+(zhuhua@utdallas.edu) received a B.S. in electrical 
+served as program committee member on several multimeengineering from Beijing Polytechnic University, China, in 
+dia conferences and workshops. He has presented tutorials 
+1998. He received an M.S. in telecommunication engineerat ACM Multimedia and other multimedia conferences. He 
+ing in University of Texas at Dallas in 2001. He is now 
+has served as a visiting research faculty with the Departworking toward a Ph.D. degree in electrical engineering at 
+ment of Computer Science, University of Maryland, College 
+the University of Texas at Dallas, where his research interPark. He also served as a faculty in the Department of 
+ests include QoS mechanisms for various wireless access 
+Computer Science, National University of Singapore, and at 
+technologies and wireless multimedia communications. 
+the Indian Institute of Technology, Madras. 
+IEEE Wireless Communications • August 2004 
+Authorized licensed use limited to: Consortium - Algeria (CERIST). Downloaded on June 17,2022 at 22:12:51 UTC from IEEE Xplore.  Restrictions apply.  
